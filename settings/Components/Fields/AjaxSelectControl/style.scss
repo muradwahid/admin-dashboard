@@ -1,0 +1,14 @@
+.bPl-selectControl-wrapper{
+  .bPl-selectControl{
+    width: fit-content;
+    padding:6px 5px;
+    border-radius: 2px;
+    cursor: pointer;
+    -webkit-appearance: auto;
+    background-image: none;
+    &:focus{
+      outline: 1px solid #1967D2;
+      border-color:#1967D2;
+    }
+  }
+}

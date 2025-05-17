@@ -1,0 +1,102 @@
+.bPlSettings {
+  display: flex;
+  flex-direction: column;
+
+  .bPlSettingsSection {
+    display: flex;
+
+    .bPlSettingsBody {
+      background: #fff;
+      .field {
+        position: relative;
+        display: flex;
+        // align-items: baseline;
+        align-items: flex-start;
+        border-top: 1px solid #ccc;
+
+        .fieldLabel {
+          width: 20%;
+          .label {
+            font-size: 14px;
+            font-weight: 500;
+          }
+          p.subTitle {
+            font-size: 13px;
+            color: #999;
+            font-weight: normal;
+            margin: 0;
+            margin-top: 4px;
+          }
+        }
+
+        .fieldComponent {
+          width: 80%;
+          .beforeAfterText {
+            font-size: 13px;
+            font-weight: normal;
+            margin: 8px 0;
+          }
+          .beforeAfterText:first-child {
+            margin-top: 0;
+          }
+        }
+        .pr15 {
+          padding-right: 15px;
+        }
+        .fieldComponent.fullWidth {
+          width: 100% !important;
+        }
+
+        .bPl-field-help-main-wrapper {
+          position: absolute;
+          top: 5px;
+          right: 5px;
+          cursor: help;
+          display: flex;
+          align-items: center;
+          gap: 6px;
+          .bPl-field-help-text {
+            padding: 3px 8px;
+            font-size: 12px;
+            background: #181818;
+            color: #fff;
+            border-radius: 3px;
+            position: absolute;
+            right: 20px;
+            white-space: nowrap;
+            display: none;
+          }
+          .bPl-field-help-icon {
+            color: #aaa;
+            font-size: 16px;
+          }
+          &:hover {
+            .bPl-field-help-text {
+              display: block;
+            }
+          }
+        }
+      }
+      .fieldPadding {
+        padding: 25px 20px 25px 30px;
+      }
+    }
+  }
+}
+
+.bPlSettingsBody.bPlBodyWidth {
+  width: calc(100% - 255px);
+}
+.bPlSettingsBody.bPlWidthFull {
+  width: 100%;
+}
+
+@media screen and (max-width: 767px) {
+  .bPlSettings{
+    .bPlSettingsSection{
+      .bPlSettingsBody {
+        width: 100%;
+      }
+    }
+  }
+}

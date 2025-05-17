@@ -1,0 +1,42 @@
+.bPl-number-main-wrapper {
+  .bPl-number-field-wrapper {
+    position: relative;
+    display: inline-block;
+    .bPl-number-field {
+      height: 28px;
+      width: 100px;
+      outline: none;
+      border: 1px solid #8c8f94;
+      border-radius: 3px;
+      padding: 0 10px;
+      &:focus {
+        box-shadow: none;
+        outline: 2px solid #4527a4;
+        border: none;
+      }
+      &:hover::-webkit-outer-spin-button,
+      &:hover::-webkit-inner-spin-button {
+        margin: 0;
+        width: 20px;
+        height: 30px;
+      }
+    }
+    .bPl-unit {
+      position: absolute;
+      z-index: 1;
+      right: 4px;
+      top: 4px;
+      bottom: 4px;
+      padding: 2px 6px;
+      color: #666;
+      font-size: 11px;
+      line-height: 1;
+      border-radius: 2px;
+      background: #eee;
+      user-select: none;
+      display: flex;
+      justify-content: center;
+      flex-direction: column;
+    }
+  }
+}

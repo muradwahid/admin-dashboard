@@ -1,0 +1,14 @@
+.bPl-checkbox-main-wrapper {
+  max-height: 300px;
+  overflow: auto;
+  .bPl-checkboxWrapper {
+    margin-bottom: 8px;
+    input[type="checkbox"] {
+      margin-right: 8px;
+    }
+    span {
+      font-size: 13px;
+      color: #4e4e4e;
+    }
+  }
+}

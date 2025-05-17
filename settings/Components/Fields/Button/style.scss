@@ -1,0 +1,32 @@
+.bPl-button {
+  height: 30px;
+  padding: 0 12px;
+  border: 1px solid #2271b100;
+  font-size: 13px;
+  border-radius: 3px;
+  white-space: nowrap;
+  cursor: pointer;
+  &.secondary {
+    background-color: #ffffff;
+    border-color: #2271b1;
+    color: #2271b1;
+  }
+  &.primary {
+    background-color: #2271b1;
+    border-color: #2271b1;
+    color: white;
+    &:hover {
+      background-color: #135e96;
+      border-color: #135e96;
+    }
+  }
+  &.warning {
+    background-color: #dc3545;
+    border-color: #dc3545;
+    color: white;
+    &:hover {
+      background-color: #bd2130;
+      border-color: #bd2130;
+    }
+  }
+}

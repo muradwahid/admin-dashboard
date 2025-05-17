@@ -1,0 +1,195 @@
+$primaryColor: #222222;
+$primaryTextColor: #fff;
+$hoverBgColor: #101010;
+$sidebarLogoColor: #9ca3af;
+$iconColor: #4527a4;
+$iconBgColor: #4427a42f;
+$borderColor: #404040;
+.wp-sidebar-main {
+  width: 255px;
+  // padding-bottom: 20px;
+  background-color: $primaryColor;
+
+  .wp-sidebar-wrapper {
+    // logo section
+    color: $primaryTextColor;
+    //menu items style
+    .wp-sidebar-items-wrapper {
+      .wp-sidebar-items {
+        .wp-sidebar-item-wrapper-main {
+          &:not(:first-child) {
+            border-top: 1px solid $borderColor;
+          }
+          .wp-sidebar-item-wrapper {
+            cursor: pointer;
+            // padding: 0 10px;
+            padding-left: 20px;
+            position: relative;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            transition: all 0.3s ease-in-out;
+            &:hover {
+              // background-color: $hoverBgColor;
+              .wp-sidebar-item-logo {
+                color: #fff;
+                fill: #fff;
+              }
+              .wp-sidebar-item {
+                .wp-sidebar-item-title {
+                  color: #fff;
+                }
+              }
+              .bpl-sidebar-toggle-icon {
+                fill: white;
+              }
+            }
+            .wp-sidebar-item {
+              .wp-sidebar-item-title {
+                font-size: 13px;
+                display: block;
+                padding: 14px 0px;
+                margin: 0;
+                color: #999;
+                transition: all 0.3s;
+              }
+              .wp-sidebar-description {
+                font-size: 13px;
+              }
+            }
+            .wp-sidebar-item-logo {
+              color: $sidebarLogoColor;
+              fill: $sidebarLogoColor;
+              display: flex;
+              align-items: center;
+              svg,
+              i,
+              span {
+                margin: 0;
+              }
+            }
+            .bpl-sidebar-toggle-icon {
+              position: absolute;
+              fill: #999;
+              right: 6px;
+              top: 50%;
+              transform: translateY(-50%);
+              transition: all 0.3s;
+            }
+            .bpl-sidebar-toggle-icon.toggle-active {
+              svg {
+                transform: rotate(90deg);
+              }
+            }
+            .active-caretLeftIcon {
+              position: absolute;
+              right: -3px;
+              top: 50%;
+              transform: translateY(-50%);
+              display: flex;
+              svg {
+                fill: #fff;
+                margin: 0;
+              }
+            }
+          }
+        }
+        .active {
+          background-color: $hoverBgColor;
+          p {
+            color: #fff !important;
+            fill: #fff;
+          }
+          .wp-sidebar-item-logo {
+            svg,
+            i,
+            span {
+              color: #fff;
+              fill: #fff;
+            }
+          }
+        }
+        .wp-sidebar-children-wrapper {
+          border-top: 1px solid #404040;
+          display: flex;
+          align-items: center;
+          gap: 5px;
+          cursor: pointer;
+          padding-left: 35px;
+          position: relative;
+          &:hover {
+            // background-color: $hoverBgColor;
+            .wp-sidebar-item-logo {
+              color: #fff;
+              fill: #fff;
+            }
+            .wp-sidebar-children-logo {
+              svg,
+              i,
+              span {
+                color: #fff;
+                fill: #fff;
+              }
+            }
+            .wp-sidebar-children-content {
+              .wp-sidebar-children-title {
+                color: #fff;
+              }
+            }
+          }
+
+          .wp-sidebar-children-logo {
+            display: flex;
+            align-items: center;
+            font-size: 13px;
+            transition: all 0.3s;
+            svg,
+            i,
+            span {
+              color: #999;
+              fill: #999;
+            }
+          }
+          .wp-sidebar-children-logo.activeIconColor {
+            svg,
+            i,
+            span {
+              color: #fff;
+              fill: #fff;
+            }
+          }
+          .wp-sidebar-children-content {
+            .wp-sidebar-children-title {
+              font-size: 13px;
+              padding: 14px 0;
+              margin: 0;
+              color: #999;
+              transition: all 0.3s;
+            }
+            .wp-sidebar-description {
+            }
+          }
+          .child-active-caretLeftIcon {
+            position: absolute;
+            right: -3px;
+            top: 50%;
+            transform: translateY(-50%);
+            display: flex;
+            svg {
+              fill: #fff;
+              margin: 0;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+.wp-sidebar-main.isHidden {
+  display: none;
+}
+@media screen and (max-width: 767px) {
+  .wp-sidebar-main {
+    display: none;
+  }
+}

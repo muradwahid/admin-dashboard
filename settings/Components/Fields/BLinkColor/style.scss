@@ -1,0 +1,12 @@
+.link-color-container{
+  display: flex;
+  align-items: flex-start;
+  gap: 20px;
+  .linkColorWrapper-main {
+    .linkColorLabel{
+      margin-bottom: 5px;
+      text-transform: capitalize;
+      font-size: 14px;
+    }
+  }
+}

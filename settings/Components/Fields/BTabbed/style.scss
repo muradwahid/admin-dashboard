@@ -1,0 +1,51 @@
+.bPl-tabbed-main-wrapper {
+  .bPl-tabBtn-wrapper {
+    display: flex;
+    gap: 5px;
+    .bPl-single-tabBtn {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      font-size: 14px;
+      padding: 12px 14px;
+      margin-top: 1px;
+      margin-bottom: -1px;
+      position: relative;
+      text-decoration: none;
+      color: #444;
+      font-weight: 600;
+      border: 1px solid #ccd0d4;
+      background-color: #f3f3f3;
+      transition: all 0.2s;
+      cursor: pointer;
+      &:hover {
+        background-color: #f9f9f9;
+      }
+    }
+    .bPl-single-tabBtn.activeTab {
+      border-bottom-color: #fff;
+      background: #fff;
+    }
+  }
+  .bPl-tabbed-body-wrapper {
+    background: #fff;
+    border: 1px solid #ccd0d4;
+    .bPl-tabbed-single-field {
+      padding: 15px 18px;
+      display: flex;
+      align-items: flex-start;
+      .bPl-tabbed-field {
+        min-width: 80%;
+      }
+      .bPl-tabbed-field-title {
+        font-size: 14px;
+        font-weight: 600;
+        min-width: 20%;
+        color: #3b4249;
+      }
+    }
+    .bPl-tabbed-single-field:not(:last-child) {
+      border-bottom: 1px solid #ebebeb;
+    }
+  }
+}

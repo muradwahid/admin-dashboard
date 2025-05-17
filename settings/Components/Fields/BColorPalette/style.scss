@@ -1,0 +1,31 @@
+.bPl-colorPalette-main-wrapper {
+  .colorPalette-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    .bPl-single-color-palette {
+      display: flex;
+      margin: 0;
+      border: 2px solid #ddd;
+      cursor: pointer;
+      position: relative;
+      &.active {
+      border-color: black;
+      }
+      .bPl-checkMark-icon {
+        background-color: black;
+        position: absolute;
+        width: 18px;
+        height: 18px;
+        display: grid;
+        place-items: center;
+        svg {
+          height: 12px;
+          color: white;
+          fill: #fff;
+        }
+      }
+    }
+    
+  }
+}

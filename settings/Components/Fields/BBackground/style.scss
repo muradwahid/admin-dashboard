@@ -1,0 +1,13 @@
+.bPl-background-wrapper{
+  display: grid;
+  gap: 10px;
+  .bPl-background-gradient{
+    display: flex;
+    gap: 10px;
+  }
+  .bPl-background-options{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    }
+}

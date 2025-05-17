@@ -1,0 +1,33 @@
+
+  .colorPickerWrapper {
+    display: flex;
+    align-items: flex-start;
+    .colorPickerBtn {
+      height: 30px;
+      padding-left: 30px;
+      padding-right: 0;
+      font-size: 11px;
+      border-radius: 2px;
+      border: none;
+      outline: 1px solid #4527a4;
+      cursor: pointer;
+      &:focus {
+        outline: 2px solid #4527a4;
+        border: none;
+      }
+      div {
+        display: flex;
+        align-items: center;
+        padding: 0 5px;
+        background-color: #f6f7f7;
+        height: inherit;
+      }
+    }
+    .bPl-colorPicker-controls{
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      margin-left: 5px;
+    }
+  }
+

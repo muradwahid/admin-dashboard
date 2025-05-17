@@ -1,0 +1,21 @@
+.bPl-radio-main-wrapper {
+  display: flex;
+  gap: 8px;
+  max-height: 300px;
+  overflow: auto;
+  .bPl-radioWrapper {
+    input[type="checkbox"] {
+      margin-right: 8px;
+    }
+    span {
+      font-size: 13px;
+      color: #4e4e4e;
+    }
+  }
+}
+.bPl-radio-main-wrapper.column {
+  flex-direction: column;
+}
+.bPl-radio-main-wrapper.row {
+  flex-direction: row;
+}

@@ -1,0 +1,63 @@
+@mixin labelStyle {
+  color: #6b6b6b;
+  margin: 0 0 2px 0;
+  font-size: 13px;
+}
+.bPl-typography-main-wrapper {
+  display: grid;
+  row-gap: 10px;
+  .bPl-typography-selectField-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    // justify-content: space-between;
+    .bPl-typography-selectField {
+      width: fit-content;
+      .bPl-typography-label {
+        @include labelStyle;
+      }
+    }
+  }
+  .bPl-typography-inputField-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    justify-content: space-between;
+    .bPl-typography-inputField {
+      width: 100%;
+      .bPl-typography-label {
+        @include labelStyle;
+      }
+    }
+  }
+  .bPl-typography-colorField-wrapper {
+    .bPl-typography-label {
+      @include labelStyle;
+    }
+  }
+  .bPl-typography-preview {
+    font-size: 16px;
+    line-height: 20px;
+    padding: 20px;
+    border: 1px solid #eee;
+    background-color: #fff;
+    border-radius: 2.5px;
+    user-select: none;
+    -webkit-user-select: none;
+    transition: background-color 0.2s, border-color 0.2s;
+    cursor: pointer;
+    position: relative;
+    .bPl-typography-icons{
+      position: absolute;
+      right: 4px;
+      top: 4px;
+      svg{
+        height: 12px;
+        fill:#999;
+      }
+    }
+    &.black-background {
+      background: #000;
+    }
+  }
+}

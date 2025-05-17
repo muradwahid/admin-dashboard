@@ -1,0 +1,31 @@
+.bPl-buttonSet-wrapper{
+  /* background-color: red; */
+  display: inline-block;
+  border-radius: 4px;
+  overflow: hidden;
+  box-shadow: 0 1px 0 rgba(0,0,0,.1);
+  border:1px solid #ccc;
+  button.bPl-buttonSet{
+    border: none;
+    border-right:1px solid #ccc ; 
+    padding:8px 10px;
+    cursor: pointer;
+    background:#f7f7f7;
+    font-size: 13px;
+    &:last-child{
+      border-right: none;
+    }
+    &:hover{
+      background-color: #eee;
+    }
+    &.active{
+      background: #4527a4;
+      color: #fff;
+      border-color: #4527a4;
+      border-right-color: #ccc;
+      &:last-child{
+        border-left-color: #4527a4;
+      }
+    }
+  }
+}
