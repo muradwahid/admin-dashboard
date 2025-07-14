@@ -1,3 +1,5 @@
+$containerWidth: 70%;
+
 #prefixAdminDashboard {
   width: 100%;
 
@@ -68,7 +70,7 @@
         justify-content: space-between;
         padding-top: 20px;
         padding-bottom: 14px;
-        width: 1300px;
+        width: $containerWidth;
         margin: 0 auto;
 
         .heading {
@@ -101,7 +103,7 @@
       }
 
       .navLinks {
-        width: 1300px;
+        width: $containerWidth;
         display: flex;
         justify-content: space-between;
         align-items: center;
@@ -120,19 +122,19 @@
             outline: none;
             font-size: 16px;
             font-weight: 500;
-          }
 
-          .links:hover {
-            border-bottom: 2px solid #1f2a38;
-          }
+            &:hover {
+              border-bottom: 2px solid #1f2a38;
+            }
 
-          .links.active {
-            border-bottom: 2px solid #1f2a38;
-            color: black;
-          }
+            &.active {
+              border-bottom: 2px solid #1f2a38;
+              color: black;
+            }
 
-          .links:focus {
-            box-shadow: none;
+            &:focus {
+              box-shadow: none;
+            }
           }
         }
 
@@ -145,7 +147,7 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
-      width: 1300px;
+      width: $containerWidth;
       margin: 0 auto;
       background: #fff;
       padding: 20px 30px;
@@ -165,7 +167,7 @@
     .feature-section {
       background-color: white;
       border-radius: 0.5rem;
-      width: 1300px;
+      width: $containerWidth;
       margin: 40px auto;
       border: 1px solid #00000030;
 
@@ -606,7 +608,7 @@
 
   // Changelog 
   .changelog {
-    width: 1300px;
+    width: $containerWidth;
     margin: 0 auto;
     background: #fff;
     padding: 20px 30px;

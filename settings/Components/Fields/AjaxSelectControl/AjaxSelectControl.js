@@ -2,8 +2,8 @@ import { Spinner } from '@wordpress/components';
 
 import useDynamicData from '../../../hooks/useDynamicData';
 import "./style.scss";
-const AjaxSelectControl = ({ field = "posts", value, onChange }) => {
-  const { data: content = null, isLoading } = useDynamicData(field);
+const AjaxSelectControl = ({ field = "posts", value, onChange, nonce }) => {
+  const { data: content = null, isLoading } = useDynamicData(field,nonce);
   if (isLoading) {
     return <Spinner />
   }

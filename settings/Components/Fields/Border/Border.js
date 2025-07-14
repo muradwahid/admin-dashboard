@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react';
+import  { Fragment } from 'react';
 import "./style.scss"
 import ColorPicker from '../ColorPicker/ColorPicker';
 const Border = ({

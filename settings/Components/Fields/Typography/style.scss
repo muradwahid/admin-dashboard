@@ -12,7 +12,8 @@
     gap: 8px;
     // justify-content: space-between;
     .bPl-typography-selectField {
-      width: fit-content;
+      // width: fit-content;
+      width: 100%;
       .bPl-typography-label {
         @include labelStyle;
       }

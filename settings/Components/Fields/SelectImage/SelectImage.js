@@ -1,25 +1,25 @@
-import React from 'react';
 import "./style.scss";
 const SelectImage = ({ value, onChange = () => { }, images=[],defaultValue,multiple=false,inline=false}) => {
-  const def = value || defaultValue
+  const def = value || defaultValue;
+
   return (
     <div className={`bpl-imageSize-wrapper ${inline ? "inlineImage" : ""}`}>
       {
-        images?.map((item, i) => <div key={i} onClick={() => {
+        Object.keys(images)?.map((key, i) => <div key={i} onClick={() => {
           if (multiple) {
-            if (def?.includes(item.value)) {
-              const newVal = def?.filter(v => v !== item.value);
+            if (def?.includes(key)) {
+              const newVal = def?.filter(v => v !== key);
               onChange(newVal);
             } else {
               const newVal = [...def];
-              newVal.push(item.value);
+              newVal.push(key);
               onChange(newVal)
             }
           } else { 
-            onChange(item.value)
+            onChange(key)
           }
-        }} className={`bpl-single-imageSize ${multiple ? def?.includes(item.value) ? "active" : "" : def === item.value ? "active" : ""}`} style={{ background: item.background }}>
-            <img src={item.label} alt="" />
+        }} className={`bpl-single-imageSize ${multiple ? def?.includes(key) ? "active" : "" : def === key ? "active" : ""}`}>
+            <img src={images[key]} alt="" />
         </div>)
       }
     </div>

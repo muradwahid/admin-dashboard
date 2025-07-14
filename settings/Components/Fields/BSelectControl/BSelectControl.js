@@ -6,6 +6,7 @@ const BSelectControl = ({
   value,
   onChange = () => { },
   options = [],
+  style = { width:"fit-content"},
 }) => {
   const [inputVal, setInputVal] = useState("");
   const [toggle, setToggle] = useState(false);
@@ -57,7 +58,7 @@ const BSelectControl = ({
   );
   return (
     <div className="bPl-token-field-main-wrapper">
-      <div className="bPl-single-token-field-wrapper" ref={toggleRef}>
+      <div className="bPl-single-token-field-wrapper" style={style} ref={toggleRef}>
         <div
           onClick={() => setToggle(!toggle)}
           className={`bPl-single-token-field ${toggle ? "activeField" : ""}`}

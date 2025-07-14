@@ -1,6 +1,6 @@
 <?php
 /**
- * Plugin Name: Plugin Name
+ * Plugin Name: Admin Dashboard Two
  * Description: Short description of the plugin
  * Version: 1.0.0
  * Author: bPlugins
@@ -47,16 +47,4 @@ if( !class_exists( 'PREFIXPlugin' ) ){
 	new PREFIXPlugin();
 }
 
-require_once PREFIX_DIR_PATH. 'settings/Settings.php';
-
-
-
-add_shortcode('murad_vai', function(){
-	ob_start();
-	$data = get_option('admin-dashboard', []);
-	echo "<pre>";
-	print_r($data);
-	echo "</pre>";
-
-	return ob_get_clean();
-});
+require_once PREFIX_DIR_PATH . 'settings/Settings.php';

@@ -1,8 +1,10 @@
 .bPl-token-field-main-wrapper .bPl-single-token-field-wrapper {
-  width: inherit;
+  // width: inherit;
   position: relative;
+  display: flex;
   .bPl-token-field-dropdown-wrapper {
     position: absolute;
+    top: 25px;
     left: 0;
     right: 0;
     background: #fff;
@@ -81,8 +83,8 @@
   }
 
   .bPl-single-token-field {
-    width: fit-content;
     display: flex;
+    width:100%;
     align-items: center;
     justify-content: space-between;
     gap: 5px;

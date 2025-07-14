@@ -1,3 +1,4 @@
+import { useEffect, useState } from "react";
 const ToggleControl = ({
   radius = "3px",
   activeBg = "#7ad03a",
@@ -12,10 +13,25 @@ const ToggleControl = ({
   defaultValue,
 }) => {
   const uniqId = Math.floor(Math.random() * 99999999);
-  const def =
-    checked === null || checked === undefined || checked === ""
-      ? defaultValue
-      : checked;
+  const [isChecked, setIsChecked] = useState(() => {
+    if (checked !== null && checked !== undefined && checked !== "") {
+      return checked === 1 || checked === "1" || checked === true;
+    }
+    return defaultValue === 1 || defaultValue === "1" || defaultValue === true;
+  });
+
+  useEffect(() => {
+    if (checked !== null && checked !== undefined && checked !== "") {
+      setIsChecked(checked === 1 || checked === "1" || checked === true);
+    }
+  }, [checked]);
+
+  const handleChange = () => {
+    const newValue = !isChecked;
+    setIsChecked(newValue);
+    onChange(newValue ? 1 : 0);
+  };
+
   return (
     <div style={{ display: "flex" }}>
       <style>{`
@@ -104,15 +120,13 @@ left: calc(100% - 24px);
           <input
             className="toggle-input"
             type="checkbox"
-            checked={def}
-            onChange={() => {
-              onChange(!def);
-            }}
-            value={def}
+            checked={isChecked}
+            onChange={handleChange}
+            value={isChecked ? 1 : 0}
           />
           <span className="slider"></span>
-          {def && <span className="toggleOn">{text_on}</span>}
-          {!def && <span className="toggleOff"> {text_off}</span>}
+          {isChecked && <span className="toggleOn">{text_on}</span>}
+          {!isChecked && <span className="toggleOff">{text_off}</span>}
         </label>
       </div>
     </div>

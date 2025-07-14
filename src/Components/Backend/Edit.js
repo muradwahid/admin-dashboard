@@ -1,12 +1,13 @@
 import { useBlockProps } from '@wordpress/block-editor';
-import { withSelect } from '@wordpress/data';
 import { produce } from 'immer';
 import { useState } from 'react';
 
+import { compose } from '@wordpress/compose';
+import { withSelect } from '@wordpress/data';
 import { useEffect } from 'react';
+import { useWPAjax } from "../../../../bpl-tools/hooks";
 import Style from '../Common/Style';
 import Settings from './Settings/Settings';
-import { select } from '@wordpress/data';
 
 const Edit = props => {
 	const { attributes, setAttributes, clientId, getSite } = props;
@@ -14,21 +15,26 @@ const Edit = props => {
 	const [data, setData] = useState({})
 
 	const [activeIndex, setActiveIndex] = useState(0);
+	const nonce = window.wpApiSettings.nonce;
 
-	const { data: utils } = useWPOptionQuery('prefixUtils');
+	// const { data: utils } = useWPOptionQuery('prefixUtils');
 
-	// const { data: dbData = null, saveData, isLoading, refetch ,error} = useWPAjax('bPlSettingsOptions', { _wpnonce: utils?.nonce, id: options.id });
+	const { data: dbData = null, saveData, isLoading, refetch, error } = useWPAjax('bPlSettingsOptions', { _wpnonce: nonce, id: "admin-dashboard" });
 
-	console.log(utils?.nonce);
+	// console.log(nonce);
 
 	useEffect(() => {
 		refetch()
-	}, [utils?.nonce]);
+	}, [nonce]);
 	useEffect(() => {
-		if (!isLoading && data) {
-			setData(data || []);
+		if (!isLoading && dbData) {
+			setData(dbData || []);
 		}
-	}, [data, isLoading, error]);
+	}, [dbData, isLoading, error]);
+
+	useEffect(() => {
+		console.log(dbData);
+	}, [dbData])
 
 	// const [nonce, setNonce] = useState('');
 	// useEffect(() => {
@@ -64,4 +70,4 @@ const Edit = props => {
 		</div>
 	</>;
 }
-export default Edit;
+export default Edit

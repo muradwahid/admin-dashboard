@@ -5,7 +5,7 @@ import Style from './Components/Common/Style';
 import AdminDashboard from './Components/Frontend/AdminDashboard';
 
 document.addEventListener('DOMContentLoaded', () => {
-	const blockNameEls = document.querySelectorAll('.wp-block-b-blocks-blockname');
+	const blockNameEls = document.querySelectorAll('.wp-block-b-blocks-admin-dashboard-two');
 	blockNameEls.forEach(blockNameEl => {
 		const attributes = JSON.parse(blockNameEl.dataset.attributes);
 		const data = JSON.parse(blockNameEl.dataset.dashboard);

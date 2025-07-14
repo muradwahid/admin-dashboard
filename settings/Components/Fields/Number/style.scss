@@ -11,7 +11,7 @@
       padding: 0 10px;
       &:focus {
         box-shadow: none;
-        outline: 2px solid #4527a4;
+        outline: 2px solid #4527a4 !important;
         border: none;
       }
       &:hover::-webkit-outer-spin-button,

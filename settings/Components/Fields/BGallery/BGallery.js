@@ -1,15 +1,21 @@
 import { MediaUpload } from "@wordpress/media-utils";
-import React from 'react';
+import { useSelect } from '@wordpress/data';
+import { store as coreStore } from '@wordpress/core-data';
 import Button from '../Button/Button';
 import "./style.scss";
-const BGallery = ({ value = [], onChange, add_title = "Add Gallery", edit_title = "Edit Gallery", clear_title = "Clear", ...props }) => {
+const BGallery = ({ value, onChange, addTitle = "Add Gallery", editTitle = "Edit Gallery", clearTitle = "Clear", ...props }) => {
+  const v = value ? value.split(',') : [];
+  const media = useSelect(select =>
+    v.map(id => select(coreStore).getMedia(id)),
+    [value]
+  );
 
   return (
     <div className='bPl-gallery-main-wrapper'>
       {
-        value && value.map(img => <div key={img?.id} className="bPl-gallery-preview">
-          <img src={img?.url} alt="" />
-        </div>)
+        value? media.map((val)=><div key={val?.source_url+val} className="bPl-gallery-preview">
+          <img src={val?.source_url} alt="" />
+        </div>):null 
       }
       <div className="bPl-gallery-controls">
         <MediaUpload
@@ -17,11 +23,11 @@ const BGallery = ({ value = [], onChange, add_title = "Add Gallery", edit_title 
           gallery={true}
           multiple={true}
           addToGallery={true}
-          onSelect={(val) => onChange(val)}
+          onSelect={(val) => onChange(val.map(item => item.id).join(','))}
           value={value}
           {...props}
           render={({ open }) => (
-            <Button variant='primary' onClick={open}>{add_title}</Button>
+            <Button variant='primary' onClick={open}>{addTitle}</Button>
           )}
         />
         {value && <>
@@ -31,15 +37,15 @@ const BGallery = ({ value = [], onChange, add_title = "Add Gallery", edit_title 
             multiple={true}
             filesList={[]}
             addToGallery={false}
-            onSelect={(val) => onChange(val)}
+            onSelect={(val) => onChange(val.map(item => item.id).join(','))}
             {...props}
-            value={Array.isArray(value) ? value?.map(item => item.id) : value}
+            value={value}
             render={({ open }) => (
-              <Button variant='secondary' onClick={open}>{edit_title}</Button>
+              <Button variant='secondary' onClick={open}>{editTitle}</Button>
             )}
           />
 
-          <Button onClick={() => onChange(null)} variant='warning'>{clear_title}</Button>
+          <Button onClick={() => onChange(null)} variant='warning'>{clearTitle}</Button>
         </>}
       </div>
     </div>

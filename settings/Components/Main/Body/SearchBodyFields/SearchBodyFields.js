@@ -91,14 +91,11 @@ const Field = ({ data, setData, field, updateData, isLoading, parentName, childN
       </div>
     }
     {
-      // isLoading ? <div className={`fieldComponent`} style={{ display: "flex", justifyContent: "center" }}>
-      //   <LoaderSvgIcon style={{ width: "50px", height: "50px" }} />
-      // </div> :
       <div className={`fieldComponent ${title ? "" : "fullWidth"}`} >
         {before && <div className="beforeAfterText" dangerouslySetInnerHTML={{ __html: before }} />}
         <FieldSwitch {...field} extraFields={field} value={value} data={data} setData={setData} onChange={val => {
           updateData(id, val, parentName, childName)
-        }} isLoading={isLoading} name={'woring fine-sdlfkjdslf'} />
+        }} isLoading={isLoading} />
         {after && <div className="beforeAfterText" dangerouslySetInnerHTML={{ __html: after }} />}
       </div>
     }

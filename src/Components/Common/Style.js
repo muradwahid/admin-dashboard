@@ -1,7 +1,7 @@
 
-const Style = ({ attributes, id }) => {
+const Style = () => {
 
-	const mainSl = `#${id}`;
+	// const mainSl = `#${id}`;
 
 	return <style dangerouslySetInnerHTML={{
 		__html: `

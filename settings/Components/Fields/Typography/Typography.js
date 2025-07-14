@@ -98,6 +98,7 @@ const Typography = ({ value, onChange, defaultValue,
             options={fonts}
             value={def?.["font-family"]}
             onChange={(val) => onChange({ ...def, ["font-family"]: val })}
+            style={{ width: "100%" }}
           />
         </div>}
         {
@@ -107,6 +108,7 @@ const Typography = ({ value, onChange, defaultValue,
               options={fontWeight}
               value={def?.["font-weight"]}
               onChange={(val) => onChange({ ...def, ["font-weight"]: val })}
+              style={{ width: "100%" }}
             />
           </div>
         }
@@ -117,6 +119,7 @@ const Typography = ({ value, onChange, defaultValue,
             options={typoTextAlignOpts}
             value={def?.["text-align"]}
             onChange={(val) => onChange({ ...def, ["text-align"]: val })}
+            style={{ width: "100%" }}
           />
         </div>}
         {font_variant && <div className="bPl-typography-selectField">
@@ -125,6 +128,7 @@ const Typography = ({ value, onChange, defaultValue,
             options={typoFontVariant}
             value={def?.["font-variant"]}
             onChange={(val) => onChange({ ...def, ["font-variant"]: val })}
+            style={{width:"100%"}}
           />
         </div>}
 
@@ -134,6 +138,7 @@ const Typography = ({ value, onChange, defaultValue,
             options={textTransforms}
             value={def?.["text-transform"]}
             onChange={(val) => onChange({ ...def, ["text-transform"]: val })}
+            style={{ width: "100%" }}
           />
         </div>}
         {text_decoration && <div className="bPl-typography-selectField">
@@ -142,6 +147,7 @@ const Typography = ({ value, onChange, defaultValue,
             options={textDecorations}
             value={def?.["text-decoration"]}
             onChange={(val) => onChange({ ...def, ["text-decoration"]: val })}
+            style={{ width: "100%" }}
           />
         </div>}
       </div>

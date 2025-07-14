@@ -3,8 +3,7 @@ import ColorPicker from "../ColorPicker/ColorPicker";
 import "./style.scss";
 const BColorGroup = ({ value, onChange, options, defaultValue }) => {
   const def = value || defaultValue
-  return (
-    <div className="color-group-container">
+  return <div className="color-group-container">
       {Object.keys(options)?.map((option, index) => {
         return (
           <div key={index} className="colorGroupWrapper-main">
@@ -14,7 +13,6 @@ const BColorGroup = ({ value, onChange, options, defaultValue }) => {
         );
       })}
     </div>
-  );
 };
 
 export default BColorGroup;

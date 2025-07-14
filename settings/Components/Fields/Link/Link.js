@@ -3,17 +3,16 @@ import useDynamicData from "../../../hooks/useDynamicData";
 import Button from "../Button/Button";
 import "./style.scss";
 import { Spinner } from "@wordpress/components";
-const Link = ({value, onChange, defaultValue }) => {
-  const { data: content = null, isLoading } = useDynamicData('pages');
+const Link = ({ value, onChange, defaultValue, nonce }) => {
+  const { data: content = null, isLoading } = useDynamicData('pages', nonce);
   const [open, setOpen] = useState(false);
   const [focus, setFocus] = useState(false);
   const [result, setResult] = useState(false);
   const [inputVal, setInputVal] = useState('')
-  const [data, setData] = useState({})
+  const [data, setData] = useState({});
   const resultRef = useRef(null);
   const modalRef = useRef(null);
-
-  const initial = data || value || defaultValue;
+  // const initial = data || value || defaultValue;
   const def = value || defaultValue || {}
   useEffect(() => {
     const handle = (e) => {
@@ -48,7 +47,7 @@ const Link = ({value, onChange, defaultValue }) => {
   return (
     <div className="bPl-link-main-wrapper">
       {
-        Object.keys(def)?.length > 0 ? <div>
+        (Object.keys(def)?.length > 0 && def.url !=="" ) ? <div>
           <div type="text" readOnly className="bPl-link-readOnly-input" >{JSON.stringify(def)}</div>
           <div style={{ display: "flex", alignItems: "center", gap: "5px" }}><Button onClick={()=>setOpen(true)} variant="secondary">Edit Link</Button>
             <Button variant="warning" onClick={() => onChange({})}>Remove Link</Button></div>
@@ -88,11 +87,11 @@ const Link = ({value, onChange, defaultValue }) => {
                 <p>Enter the destination URL</p>
                 <div className="bPl-link-option">
                   <label>URL</label>
-                  <input value={initial?.["url"]} onChange={e => setData({...initial,url:e.target.value})} type="text" name="linkType" />
+                  <input value={def?.["url"]} onChange={e => setData({...def,url:e.target.value})} type="text" name="linkType" />
                 </div>
                 <div className="bPl-link-option">
                   <label>Link Text</label>
-                  <input value={initial?.["text"]} onChange={e => setData({ ...initial, text: e.target.value })} type="text" name="linkType" />
+                  <input value={def?.["text"]} onChange={e => setData({ ...def, text: e.target.value })} type="text" name="linkType" />
                 </div>
                 <div
                   style={{
@@ -109,10 +108,10 @@ const Link = ({value, onChange, defaultValue }) => {
                     type="checkbox"
                     name="linkType"
                     id="linkType"
-                    value={initial?.['target'] === "_blank" ? true : false}
-                    checked={initial?.['target'] === "_blank" ? true : false}
+                    value={def?.['target'] === "_blank" ? true : false}
+                    checked={def?.['target'] === "_blank" ? true : false}
                     onChange={() => {
-                      setData({ ...initial,target:value?.['target'] === "_blank" ? "" : "_blank"})
+                      setData({ ...def,target:value?.['target'] === "_blank" ? "" : "_blank"})
                       
                     }}
                   />
@@ -162,7 +161,7 @@ const Link = ({value, onChange, defaultValue }) => {
                   </div>
                 }
                 <ul>
-                  {isLoading ? <Spinner /> : searchTerm.map((val, i) => <li onClick={() => setData({ ...initial,text:val.label,url:val.url})} key={i}>{val?.label}</li>)}
+                  {isLoading ? <Spinner /> : searchTerm?.map((val, i) => <li onClick={() => setData({ ...def,text:val.label,url:val.url})} key={i}>{val?.label}</li>)}
                 </ul>
               </div>
             </div>

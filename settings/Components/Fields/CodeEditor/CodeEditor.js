@@ -34,6 +34,7 @@ const CodeEditor = ({
   height = "350px",
   settings = {}
 }) => {
+  //mode = solarized_dark | dracula | github | merbivore | twilight
   const { theme = "github", mode = "html" } = settings;
   const id = Math.floor(Math.random() * 999);
   const def = value || defaultValue;

@@ -1,9 +1,10 @@
 import { useEffect, useState } from 'react';
 import { AiFillQuestionCircle } from '../../../utils/icons';
 import FieldSwitch from './FieldSwitch';
+import { checkDependency } from '../../../utils/functions';
 
 const Body = (props) => {
-  const { options, data, sections, activeSection, activeChild, updateData, setData, isLoading, refetch,dbData} = props;
+  const { options, data, sections, activeSection, activeChild, updateData, setData, isLoading, refetch, dbData } = props;
   const [item, setItem] = useState(sections.find(s => s.name === activeSection));
   useEffect(() => {
     const section = sections.find(s => s.name === activeSection);
@@ -17,20 +18,19 @@ const Body = (props) => {
   }, [activeSection, activeChild])
 
   const { fields = [], description = '' } = item;
-
+  
   return <>
     {description && <p className='description' dangerouslySetInnerHTML={{ __html: description }} />}
 
     <div className='fields'>
-      {fields.map((field, i) => <Field key={i} {...{ saveType: options.saveType, data, setData,dbData, activeSection, activeChild, field, updateData, fields, isLoading, refetch }} />)}
+      {fields.map((field, i) => checkDependency(field?.dependency, data, fields) ? <Field key={i} {...{ saveType: options.saveType, data, setData, dbData, activeSection, activeChild, field, updateData, fields, isLoading, refetch }} />: null)}
     </div>
   </>;
 };
 export default Body;
 
-const Field = ({ saveType = 'nested', data, setData, activeSection, activeChild, field, updateData, isLoading, refetch,dbData }) => {
-  const { id, title, subtitle, before, after, field: fieldProps, help } = field;
-
+const Field = ({ saveType = 'nested', data, setData, activeSection, activeChild, field, updateData, isLoading, refetch, dbData }) => {
+  const { id, title, subtitle, before, after, field: fieldProps, help, desc = "" } = field;
   const [value, setValue] = useState();
   const [dbValue, setDbValue] = useState();
   useEffect(() => {
@@ -54,6 +54,7 @@ const Field = ({ saveType = 'nested', data, setData, activeSection, activeChild,
       setDbValue(dbData?.[id] || '');
     }
   }, [activeSection, activeChild, isLoading, value, refetch]);
+
   return <div className={`field ${["notice", "heading", "subheading", "content", "submessage"].includes(fieldProps) ? "" : "fieldPadding"}`}>
     {
       title && <div className={`fieldLabel ${["notice", "heading", "subheading", "content", "submessage"].includes(fieldProps) ? "" : "pr15"}`}>
@@ -63,14 +64,12 @@ const Field = ({ saveType = 'nested', data, setData, activeSection, activeChild,
     }
 
     {
-      // isLoading ? <div className={`fieldComponent ${!title ? "fullWidth" : ""}`} style={{ display: "flex", justifyContent: "center" }}>
-      //   <LoaderSvgIcon style={{ width: "50px", height: "50px" }} />
-      // </div> :
       <div className={`fieldComponent ${!title ? "fullWidth" : ""}`} >
         {before && <div className="beforeAfterText" dangerouslySetInnerHTML={{ __html: before }} />}
         <FieldSwitch {...field} extraFields={field} value={value} data={data} setData={setData} onChange={val => {
-          updateData(id, val,)
+          updateData(id, val)
         }} isLoading={isLoading} refetch={refetch} dbData={dbValue} />
+        {desc && <div className="beforeAfterText" dangerouslySetInnerHTML={{ __html: desc }} />}
         {after && <div className="beforeAfterText" dangerouslySetInnerHTML={{ __html: after }} />}
       </div>
     }
@@ -80,7 +79,6 @@ const Field = ({ saveType = 'nested', data, setData, activeSection, activeChild,
         <AiFillQuestionCircle className="bPl-field-help-icon" />
       </div>
     }
-
 
   </div>
 }

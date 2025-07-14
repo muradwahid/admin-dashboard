@@ -6,7 +6,7 @@ import "leaflet-fullscreen";
 import "leaflet.locatecontrol";
 import "leaflet.locatecontrol/dist/L.Control.Locate.min.css";
 import "leaflet/dist/leaflet.css";
-import React, { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { MapContainer, Marker, TileLayer, useMap } from "react-leaflet";
 import markerIcon from "../../../assets/icons/marker-icon.png";
 import "./style.scss";
@@ -51,9 +51,9 @@ const ResetCenterView = ({ selectPosition, setSelectPosition }) => {
   }, [selectPosition, map, setSelectPosition]);
 };
 
-function Map({ value, onChange, defaultValue }) {
+function Map({ value={}, onChange, defaultValue={} }) {
   const def = value || defaultValue;
-
+  // { "address": "", "latitude": "30.14512718337613", "longitude": "34.45312500000001", "zoom": "2" }
   const { address, latitude, longitude, zoom = 10 } = def || {};
   const [searchText, setSearchText] = useState("");
   const [listPlace, setListPlace] = useState([]);

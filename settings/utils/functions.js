@@ -44,4 +44,33 @@ export const updateData = (attr, value, ...props) => {
 }
 
 
+export const checkDependency = (dependency = [], allValues, fields) => {
+  if (!dependency || !Array.isArray(dependency) || dependency.length !== 3) {
+    return true; // No dependency or invalid format, show field
+  }
+  const [fieldName, operator, expectedValue] = dependency;
+  const actualValue = allValues[fieldName] ?? fields.find(field => field.name === fieldName)?.default;
 
+  switch (operator) {
+    case '==':
+    case '===':
+      return actualValue === expectedValue;
+    case '!=':
+    case '!==':
+      return actualValue !== expectedValue;
+    case '>':
+      return Number(actualValue) > Number(expectedValue);
+    case '<':
+      return Number(actualValue) < Number(expectedValue);
+    case '>=':
+      return Number(actualValue) >= Number(expectedValue);
+    case '<=':
+      return Number(actualValue) <= Number(expectedValue);
+    case 'in':
+      return Array.isArray(expectedValue) && expectedValue.includes(actualValue);
+    case 'not_in':
+      return Array.isArray(expectedValue) && !expectedValue.includes(actualValue);
+    default:
+      return true;
+  }
+};

@@ -1,9 +1,9 @@
 {
 	"$schema": "https://schemas.wp.org/trunk/block.json",
 	"apiVersion": 3,
-	"name": "b-blocks/blockname",
+	"name": "b-blocks/admin-dashboard-two",
 	"version": "1.0.0",
-	"title": "Block Name",
+	"title": "Admin Dashboard Two",
 	"category": "widgets",
 	"description": "Short description of the block",
 	"keywords": [

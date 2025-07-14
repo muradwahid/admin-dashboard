@@ -1,4 +1,3 @@
-import React from 'react';
 import "./style.scss";
 import FieldSwitch from '../../Main/Body/FieldSwitch';
 const BFieldset = ({ fields,value,onChange }) => {

@@ -3,7 +3,6 @@ import FieldSwitch from "../../Main/Body/FieldSwitch";
 import "./style.scss";
 const BAccordion = ({ fields, value, onChange }) => {
   const [data, setData] = useState(value || {});
-
   useEffect(() => {
     const titleWrapper = document.querySelectorAll(".bPl-accordion-title-wrapper");
     const bodyWrapper = document.querySelectorAll(".bPl-accordion-body-wrapper");
@@ -20,18 +19,17 @@ const BAccordion = ({ fields, value, onChange }) => {
         }
       }
     })
-
   })
 
   useEffect(() => {
     onChange(data)
   }, [data])
 
-
   return <Fragment>
     {
       fields.map((field, index) => {
-        const { id, icon = null } = field;
+        const { icon = null } = field;
+        // console.log(field);
         return <div key={index} className="bPl-accordion-main-wrapper">
           <div
             className="bPl-accordion-title-wrapper"
@@ -56,7 +54,7 @@ const BAccordion = ({ fields, value, onChange }) => {
                 return <div key={i} className="bPl-accordion-single-field">
                   <div className="bPl-accordion-field-title">{f?.title}</div>
                   <div className="bPl-accordion-field">
-                    <FieldSwitch attributes={f?.attributes} {...f} extraField={f} value={value?.[id]?.[f?.id]} onChange={val => setData({ ...value, [id]: { ...value?.[id], [f.id]: val } })} />
+                    <FieldSwitch attributes={f?.attributes} {...f} extraField={f} value={value?.[f?.id]} onChange={val => setData({ ...value, [f?.id]:val})} />
                   </div>
                 </div>
               })

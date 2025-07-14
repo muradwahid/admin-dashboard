@@ -3,6 +3,7 @@ import React from 'react';
 import "./style.scss";
 const BSanitize = ({ value, onChange, sanitize, dbData }) => {
   const [text, setText] = React.useState(dbData || "");
+  // console.log(sanitize);
   const [curr, to, rep] = sanitize.split("_")
   function findAndReplace(originalString, target, replacement) {
     const regex = new RegExp(target, 'g');

@@ -1,4 +1,3 @@
-import React from 'react';
 import Content from '../Parts/Content';
 import Header from '../Parts/Header';
 
@@ -9,6 +8,9 @@ const Layout = ({ children }) => {
     { name: 'In Dev', href: '/inDev' },
     { name: 'Popular Plugin', href: '/popularPlugin' },
     { name: 'Settings', href: '/settings' },
+    { name: 'Demo', href: '/demo' },
+    { name: 'Demo Second', href: '/demo2' },
+    { name: 'Video', href: '/video' }
   ]
 
   return (

@@ -11,7 +11,7 @@ if( !class_exists('PREFIXAdmin') ){
 			if( str_contains( $hook, 'plugin-slug' ) ){
 				wp_enqueue_style( 'plugin-slug-admin-style', PREFIX_DIR_URL . 'build/admin.css', [], PREFIX_VERSION );
 	
-				wp_enqueue_script( 'plugin-slug-admin-script', PREFIX_DIR_URL . 'build/admin.js', [ 'react', 'react-dom',  'wp-components', 'wp-i18n', 'wp-api', 'wp-util' ,'lodash', 'wp-media-utils'  ], PREFIX_VERSION, true );
+				wp_enqueue_script( 'plugin-slug-admin-script', PREFIX_DIR_URL . 'build/admin.js', [ 'react', 'react-dom',  'wp-components', 'wp-i18n', 'wp-api', 'wp-util' ,'lodash', 'wp-media-utils' ,'wp-data','wp-core-data','wp-api-request' ], PREFIX_VERSION, true );
 			}
 		}
 	
@@ -50,7 +50,7 @@ if( !class_exists('PREFIXAdmin') ){
 		function dashboardPage(){ ?>
 			<div id='prefixAdminDashboard' data-info=<?php echo esc_attr( wp_json_encode([
 				'version' => PREFIX_VERSION
-			]) ); ?> data-nonce=<?php echo esc_attr(wp_create_nonce('admin-dashboard'))?>></div>
+			]) ); ?> ></div>
 		<?php }
 
 		function upgradePage(){ ?>

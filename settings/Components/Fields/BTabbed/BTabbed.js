@@ -1,18 +1,18 @@
 import React, { useEffect, useState } from 'react';
 import FieldSwitch from '../../Main/Body/FieldSwitch';
 import "./style.scss";
-const BTabbed = ({ fields, value, onChange }) => {
+const BTabbed = ({ tabs, value, onChange, default:defaultValues }) => {
   const [activeTab, setActiveTab] = useState(0);
-  const [data, setData] = useState(value || {})
-  const { id = "", fields: child = "" } = fields?.[activeTab];
+  const def = value ? value : defaultValues;
+  const [data, setData] = useState(def || {});
   useEffect(() => {
-    onChange(data)
+    onChange(data);
   }, [data])
   return (
     <div className="bPl-tabbed-main-wrapper">
       <div className="bPl-tabBtn-wrapper">
         {
-          fields?.map((item, index) => (
+          tabs?.map((item, index) => (
             <div
               key={index}
               onClick={() => setActiveTab(index)}
@@ -26,11 +26,11 @@ const BTabbed = ({ fields, value, onChange }) => {
       </div>
       <div className="bPl-tabbed-body-wrapper">
         {
-          child?.map((f, idx) => {
-            return <div key={idx} className="bPl-tabbed-single-field">
-              <div className="bPl-tabbed-field-title">{f?.title}</div>
+          tabs?.[activeTab]?.fields?.map((tab, idx) => {
+            return <div key={idx+activeTab} className="bPl-tabbed-single-field">
+              <div className="bPl-tabbed-field-title">{tab?.title}</div>
               <div className="bPl-tabbed-field">
-                <FieldSwitch {...f} extraField={f} value={value?.[id]?.[f?.id]} onChange={val => setData({ ...value, [id]: { ...value?.[id], [f?.id]: val } })} />
+                <FieldSwitch field={tab?.field} title={tab?.title} value={data?.[tab?.id]} onChange={val => setData({ ...value, [tab?.id]: val })} />
               </div>
             </div>
           })

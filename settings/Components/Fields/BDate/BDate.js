@@ -1,6 +1,6 @@
 /* eslint-disable no-unused-vars */
 import { format } from "date-fns";
-import React, { Fragment, useEffect, useRef, useState } from "react";
+import { Fragment, useEffect, useRef, useState } from "react";
 import { DayPicker } from "react-day-picker";
 import "react-day-picker/style.css";
 import "./style.scss";

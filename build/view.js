@@ -47,11 +47,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 
-const Style = ({
-  attributes,
-  id
-}) => {
-  const mainSl = `#${id}`;
+const Style = () => {
+  // const mainSl = `#${id}`;
+
   return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("style", {
     dangerouslySetInnerHTML: {
       __html: `
@@ -76,9 +74,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 
-const AdminDashboard = ({
-  attributes
-}) => {
+const AdminDashboard = () => {
   return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", null, "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ipsum, sit. Nemo doloribus, temporibus dicta impedit nostrum officia, maiores voluptatibus iusto dolorum pariatur unde ratione commodi explicabo aspernatur velit repudiandae vitae!");
 };
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (AdminDashboard);
@@ -204,7 +200,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 document.addEventListener('DOMContentLoaded', () => {
-  const blockNameEls = document.querySelectorAll('.wp-block-b-blocks-blockname');
+  const blockNameEls = document.querySelectorAll('.wp-block-b-blocks-admin-dashboard-two');
   blockNameEls.forEach(blockNameEl => {
     const attributes = JSON.parse(blockNameEl.dataset.attributes);
     const data = JSON.parse(blockNameEl.dataset.dashboard);

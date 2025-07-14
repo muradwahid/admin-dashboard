@@ -23,7 +23,6 @@ const Sidebar = (props) => {
                           setActiveChild('');
                         }
                         refetch()
-                        // handleActiveItem(section, index)
                       }}
                       className={`wp-sidebar-item-wrapper ${activeSection === name && !children ? "active" : ""
                         }`}

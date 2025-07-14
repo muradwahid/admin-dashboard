@@ -1,48 +1,37 @@
-import React from "react";
-import "./style.scss";
 import ColorPicker from "../ColorPicker/ColorPicker";
+import "./style.scss";
 const BLinkColor = ({
   value,
   onChange,
-  normal = true,
-  hover = false,
+  color = true,
+  hover = true,
   active = false,
-  visited = true,
+  visited = false,
   focus = false,
   defaultValue = {},
 }) => {
-  const def =value || defaultValue
-
+  const def = value || defaultValue
+  // console.log(value);
   const activeColor = [
-    { label: "normal", active: normal },
-    { label: "hover", active: hover },
-    { label: "active", active },
-    { label: "visited", active: visited },
-    { label: "focus", active: focus },
+    { label: "Normal", active: color, key: 'color' },
+    { label: "Hover", active: hover, key: 'hover' },
+    { label: "Active", active, key: 'active' },
+    { label: "Visited", active: visited, key: 'visited' },
+    { label: "Focus", active: focus, key: 'focus' },
   ];
   const acColor = [];
   activeColor.map((val) => {
     if (val?.active) {
-      acColor.push({ label: val?.label, active: val?.active });
+      acColor.push({ label: val?.label, active: val?.active, key: val?.key });
     }
   });
-  const options =
-    Object.keys(defaultValue).length > 0
-      ? Object.keys(defaultValue).map((val) => ({
-        label: val,
-        active: true,
-      }))
-      : acColor;
-
   return (
     <div className="link-color-container">
-      {options?.map((option, index) => {
-        return (
-          <div key={index} className="linkColorWrapper-main">
-            <div className="linkColorLabel">{option?.label}</div>
-            <ColorPicker value={def?.[option?.label]} onChange={val => onChange({ ...def, [option?.label]: val })} defaultValue={defaultValue ? defaultValue?.[option?.label]:""} />
-          </div>
-        );
+      {acColor?.map((option, index) => {
+        return <div key={index} className="linkColorWrapper-main">
+          <div className="linkColorLabel">{option?.label}</div>
+          <ColorPicker value={def?.[option?.key]} onChange={val => onChange({ ...def, [option?.key]: val })} defaultValue={defaultValue ? defaultValue?.[option?.key] : ""} />
+        </div>
       }
       )}
     </div>

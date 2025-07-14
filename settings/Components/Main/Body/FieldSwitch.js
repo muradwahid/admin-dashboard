@@ -1,17 +1,17 @@
-import { SelectControl } from "@wordpress/components"
-import AjaxSelectControl from "../../Fields/AjaxSelectControl/AjaxSelectControl"
-import BAccordion from "../../Fields/BAccordion/BAccordion"
-import BBackground from "../../Fields/BBackground/BBackground"
-import BBackup from "../../Fields/BBackup/BBackup"
-import BButtonSet from "../../Fields/BButtonSet/BButtonSet"
-import BCheckboxControl from "../../Fields/BCheckboxControl/BCheckboxControl"
-import BColorGroup from "../../Fields/BColorGroup/BColorGroup"
-import BColorPalette from "../../Fields/BColorPalette/BColorPalette"
-import BContent from "../../Fields/BContent/BContent"
-import BDate from "../../Fields/BDate/BDate"
-import BFieldset from "../../Fields/BFieldset/BFieldset"
-import BGallery from "../../Fields/BGallery/BGallery"
-import BHeading from "../../Fields/BHeading/BHeading"
+import { SelectControl } from "@wordpress/components";
+import AjaxSelectControl from "../../Fields/AjaxSelectControl/AjaxSelectControl";
+import BAccordion from "../../Fields/BAccordion/BAccordion";
+import BBackground from "../../Fields/BBackground/BBackground";
+import BBackup from "../../Fields/BBackup/BBackup";
+import BButtonSet from "../../Fields/BButtonSet/BButtonSet";
+import BCheckboxControl from "../../Fields/BCheckboxControl/BCheckboxControl";
+import BColorGroup from "../../Fields/BColorGroup/BColorGroup";
+import BColorPalette from "../../Fields/BColorPalette/BColorPalette";
+import BContent from "../../Fields/BContent/BContent";
+import BDate from "../../Fields/BDate/BDate";
+import BFieldset from "../../Fields/BFieldset/BFieldset";
+import BGallery from "../../Fields/BGallery/BGallery";
+import BHeading from "../../Fields/BHeading/BHeading";
 import BLinkColor from "../../Fields/BLinkColor/BLinkColor"
 import BPanelRepeater from "../../Fields/BPanelRepeater/BPanelRepeater"
 import BRadioControl from "../../Fields/BRadioControl/BRadioControl"
@@ -41,9 +41,11 @@ import Spacing from "../../Fields/Spacing/Spacing"
 import Spinner from "../../Fields/Spinner/Spinner"
 import ToggleControl from "../../Fields/ToggleControl/ToggleControl"
 import Typography from "../../Fields/Typography/Typography"
+import Upload from "../../Fields/Upload/Upload"
 
 const FieldSwitch = (props) => {
-  const { extraFields, dbData,label, help, field, labelPosition, value, onChange, placeholder, options = [], default: defaultValue, attributes, content, variant, type, fields, data, setData, isLoading, name } = props;
+  const { extraFields, dbData, label, help, field, labelPosition, value, onChange, placeholder, options = [], default: defaultValue, attributes, content, variant, type, fields, data, setData, isLoading } = props;
+  const nonce = window.wpApiSettings.nonce;
   const fieldProps = { value, help, label, defaultValue, fields, ...attributes, isLoading, dbData }
 
   switch (field) {
@@ -61,14 +63,14 @@ const FieldSwitch = (props) => {
     case 'heading': return <BHeading {...extraFields} />
     case 'textarea':
       return <BTextareaControl  {...fieldProps} {...attributes} onChange={val => onChange(val)} />
-    case 'tabbed': return <BTabbed  {...fieldProps} {...attributes} onChange={val => onChange(val)} />
+    case 'tabbed': return <BTabbed value={value} tabs={props?.tabs} default={defaultValue} onChange={val => onChange(val)} />
     case 'fieldset': return <BFieldset {...fieldProps} {...attributes} onChange={val => onChange(val)} />
-    case 'link': return <Link {...fieldProps} {...attributes} {...extraFields} onChange={val => onChange(val)} />
+    case 'link': return <Link nonce={nonce} {...fieldProps} {...attributes} {...extraFields} onChange={val => onChange(val)} />
     case 'map': return <Map {...fieldProps} {...extraFields} onChange={val => onChange(val)} />
     case "switcher": return <ToggleControl checked={value} labelPosition={labelPosition} {...fieldProps} {...extraFields} onChange={val => onChange(val)} />
     case "image_select": return <SelectImage images={options} {...fieldProps} {...attributes} {...extraFields} onChange={val => onChange(val)} />
     case 'select':
-      return <div style={{ width: "fit-content" }}><SelectControl {...fieldProps} options={options} onChange={val => onChange(val)} /></div>
+      return <div style={{ width: "fit-content" }}><SelectControl {...fieldProps} options={Object.keys(options).map(key => { return { value: key, label: options[key] } })} onChange={val => onChange(val)} /></div>
     case 'pages':
     case 'posts':
     case 'categories':
@@ -77,23 +79,27 @@ const FieldSwitch = (props) => {
     case 'postTypes':
     case 'menus':
     case 'taxonomies':
-      return <AjaxSelectControl field={field} value={value} onChange={val => onChange(val)} />
+      return <AjaxSelectControl field={field} nonce={nonce} value={value} onChange={val => onChange(val)} />
     case "color": return <ColorPicker  {...fieldProps} onChange={val => onChange(val)} />
+    case 'upload': return <Upload {...fieldProps} {...extraFields} onChange={val => onChange(val)} />
     case "media": return <InlineMediaUpload {...fieldProps} {...extraFields} onChange={val => onChange(val)} />
     case "background": return <BBackground {...fieldProps} {...extraFields} onChange={val => onChange(val)} />
     case "radio": return <BRadioControl {...fieldProps} {...extraFields} options={options} selected={value} onChange={val => onChange(val)} />
     case 'checkbox':
       return <BCheckboxControl {...extraFields} defaultValue={defaultValue} {...attributes} options={options} value={value} onChange={val => onChange(val)} />
     case 'chosen':
-      return <BSelectTokenField options={options} {...fieldProps} onChange={val => onChange(val)} />
+      return <BSelectTokenField nonce={nonce} options={options} {...fieldProps} onChange={val => onChange(val)} />
     case "notice": return <Notice content={content} variant={variant} />
     case 'number': return <Number {...fieldProps} {...extraFields} onChange={val => onChange(val)} />
 
     case "repeater": {
-      return <BPanelRepeater {...fieldProps} {...extraFields} fields={props.fields} onChange={val => onChange(val)} />
+      return <BPanelRepeater {...fieldProps} {...extraFields} fields={props.fields} default={defaultValue} onChange={val => onChange(val)} />
+    }
+    case "group": {
+      return <BPanelRepeater type="group" {...fieldProps} {...extraFields} fields={props.fields} default={defaultValue} onChange={val => onChange(val)} />
     }
     case 'sanitize': return <BSanitize {...fieldProps} {...extraFields} onChange={val => onChange(val)} />
-    case "searchPage": return <BSearchPage value={value} onChange={val => onChange(val)} type={type} />
+    case "searchPage": return <BSearchPage nonce={nonce} value={value} onChange={val => onChange(val)} type={type} />
     case 'subheading': return <BSubHeading {...extraFields} />
     case 'spacing': return <Spacing {...fieldProps} {...extraFields} onChange={val => onChange(val)} />
     case 'spinner': return <Spinner {...fieldProps} {...extraFields} onChange={val => onChange(val)} />
@@ -108,7 +114,7 @@ const FieldSwitch = (props) => {
     case 'validate': return <BValidateInput {...fieldProps} {...extraFields} onChange={val => onChange(val)} />
     case "wp_editor": return <BWPEditor {...fieldProps} {...attributes} {...extraFields} onChange={val => onChange(val)} />
     default:
-      return <BTextControl  {...fieldProps} {...attributes} placeholder={placeholder} onChange={val => onChange(val)} name={name} />
+      return <BTextControl  {...fieldProps} {...attributes} placeholder={placeholder} onChange={val => onChange(val)} name={value} />
   }
 }
 export default FieldSwitch

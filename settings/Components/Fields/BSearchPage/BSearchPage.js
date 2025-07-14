@@ -4,10 +4,10 @@ import "./style.scss";
 const BSearchPage = ({
   value = [],
   onChange = () => { },
-  type = "page"
-
+  type = "page",
+  nonce
 }) => {
-  const { data: dbData, isLoading } = useDynamicData(type);
+  const { data: dbData, isLoading } = useDynamicData(type, nonce);
   const [inputVal, setInputVal] = useState("")
   const [toggle, setToggle] = useState(false);
   const toggleRef = useRef();

@@ -1,7 +1,5 @@
-import { MediaUpload } from "@wordpress/block-editor";
 import { CheckboxControl, __experimentalInputControl as InputControl, SelectControl, TextareaControl } from "@wordpress/components";
 import React, { useState } from 'react';
-import Button from "../../Panel/Button/Button";
 import ColorPalette from "../../Panel/ColorPalette/ColorPalette";
 import ToggleControl from "../../Panel/ToggleControl/ToggleControl";
 import ImageSize from "../../Panel/ImageSize/ImageSize";
@@ -19,15 +17,6 @@ const Overview = () => {
         <div style={{ width: "100%" }}>
           <InputControl style={{ borderRadius: "3px" }} value={overViewState.image?.url} />
         </div>
-        {/* <MediaUpload
-          gallery={false}
-          onSelect={(value) => setOverViewState({ ...overViewState, image: value })}
-          value={overViewState?.image}
-          render={({ open }) => (
-            <Button onClick={open}>Upload</Button>
-          )}
-          multiple={false}
-        /> */}
       </div>
     },
     { title: "Switcher", Component: <ToggleControl checked={overViewState.isToggle} onChange={val => setOverViewState({ ...overViewState, isToggle: val })} label="The label text of the switcher." labelPosition="right" /> },

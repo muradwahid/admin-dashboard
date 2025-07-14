@@ -1,4 +1,3 @@
-import React from 'react';
 import App from './App';
 // import { HashRouter } from 'react-router-dom';
 
@@ -8,10 +7,10 @@ import App from './App';
 // import App from './App';
 // import { options } from './options';
 
-const AppContainer = ({options, nonce }) => {
+const AppContainer = ({options }) => {
   return (
     <div>
-      <App options={options} nonce={nonce} />
+      <App options={options} />
     </div>
   );
 }

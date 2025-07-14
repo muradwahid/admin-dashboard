@@ -6,6 +6,7 @@
   align-items: center;
   padding: 20px 40px;
   z-index: 999;
+  transition: all 0.3s ease-in-out;
   .navbar-logo {
     h1 {
       font-size: 20px;
@@ -13,19 +14,23 @@
       color: white;
     }
   }
+
   .navBar-rightItems-wrapper {
     display: flex;
     align-items: center;
     flex-wrap: wrap;
     gap: 3px;
+
     .bPl-form-result {
       font-size: 12px;
       padding: 5px 6px;
       border-radius: 3px;
+
       &.form-warning {
         color: #8a6d3b;
         background-color: #faebcc;
       }
+
       &.form-success {
         color: #fff;
         background-color: #46b450;
@@ -41,14 +46,17 @@
         margin: 0;
         cursor: pointer;
         fill: #ababab;
+
         &:hover {
           fill: #cdcdcd;
           background-color: #444444;
         }
       }
     }
+
     .nav-form {
       display: flex;
+
       // gap: 3px;
       input[type="text"] {
         width: 180px;
@@ -56,11 +64,13 @@
         border: none;
         border-radius: 3px;
         color: #fff;
+
         &::placeholder {
           color: #949494;
         }
       }
     }
+
     .nav-submitBtn {
       background-color: #2271b1;
       border-color: #2271b1;
@@ -71,11 +81,12 @@
       border-radius: 3px;
       position: relative;
       cursor: pointer;
+
       &:hover {
         background-color: #135e96;
         border-color: #135e96;
       }
-      
+
       .saveBtn-loader2 {
         position: absolute;
         top: 50%;
@@ -101,6 +112,7 @@
         }
       }
     }
+
     .reset-sectionBtn {
       font-size: 13px;
       padding: 6px 8px;
@@ -109,11 +121,13 @@
       color: #2271b1;
       cursor: pointer;
       font-weight: 400;
+
       &:hover {
         background-color: #d3d3d3;
         color: #1a1a1a;
       }
     }
+
     .resetAll-btn {
       font-size: 13px;
       padding: 6px 8px;
@@ -123,6 +137,7 @@
       background-color: #dc3545;
       cursor: pointer;
       font-weight: 400;
+
       &:hover {
         background-color: #bd2130;
       }
@@ -134,37 +149,44 @@
   .navBar-wrapper {
     flex-direction: column;
     justify-content: center;
+
     .navbar-logo {
       h1 {
         text-align: center;
       }
     }
+
     .navBar-rightItems-wrapper {
       justify-content: center;
       flex-direction: column;
-      gap:8px;
+      gap: 8px;
+
       .nav-form {
         input[type="text"] {
-        min-height: 0px;
-        height: 28px;
-        color: #fff;
-        font-size: 12px;
-        text-align: center;
+          min-height: 0px;
+          height: 28px;
+          color: #fff;
+          font-size: 12px;
+          text-align: center;
         }
       }
+
       .navbar-icon {
         display: none;
       }
+
       .reset-sectionBtn {
         display: none;
       }
     }
   }
 }
+
 .navBar-wrapper.stickyNav {
   position: -webkit-sticky;
   position: sticky;
   top: 30px;
   background-color: black;
   box-shadow: 0px 2px 2px 0px #101014;
+  transition: all 0.3s ease-in-out;
 }
