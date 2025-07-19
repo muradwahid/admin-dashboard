@@ -21,8 +21,8 @@ if( !class_exists('PREFIXAdmin') ){
 			</svg>";
 	
 			add_menu_page(
-				__( 'Plugin Menu', 'plugin-slug' ),
-				__( 'Plugin', 'plugin-slug' ),
+				__( 'Plugin Menu', 'text-domain' ),
+				__( 'Plugin', 'text-domain' ),
 				'manage_options',
 				'plugin-slug',
 				'',
@@ -31,16 +31,16 @@ if( !class_exists('PREFIXAdmin') ){
 			);
 			add_submenu_page(
 				'plugin-slug',
-				__( 'Dashboard', 'plugin-slug' ),
-				__( 'Dashboard', 'plugin-slug' ),
+				__( 'Dashboard', 'text-domain' ),
+				__( 'Dashboard', 'text-domain' ),
 				'manage_options',
 				'plugin-slug',
 				[$this, 'dashboardPage']
 			);
 			add_submenu_page(
 				'plugin-slug',
-				__( 'UPGRADE', 'plugin-slug' ),
-				__( 'UPGRADE', 'plugin-slug' ),
+				__( 'UPGRADE', 'text-domain' ),
+				__( 'UPGRADE', 'text-domain' ),
 				'manage_options',
 				'plugin-slug-upgrade',
 				[$this, 'upgradePage']

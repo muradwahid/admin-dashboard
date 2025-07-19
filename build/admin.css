@@ -6111,6 +6111,72 @@ input::-webkit-inner-spin-button {
     transform: rotate(360deg);
   }
 }
+/*!*************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[4].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[4].use[2]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[4].use[3]!./admin/Pages/FreeTrialForm/style.scss ***!
+  \*************************************************************************************************************************************************************************************************************************************************************/
+.freeTrialForm-wrapper {
+  box-sizing: border-box;
+  background-color: white;
+  border-radius: 0.5rem;
+  width: 70%;
+  margin: 40px auto;
+  border: 1px solid rgba(0, 0, 0, 0.1882352941);
+  padding: 15px;
+  min-height: 600px;
+}
+.freeTrialForm-wrapper .freeTrialForm-iframe {
+  width: 100%;
+  min-height: 600px;
+}
+/*!*******************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[4].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[4].use[2]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[4].use[3]!./admin/components/FreemiusButton/style.scss ***!
+  \*******************************************************************************************************************************************************************************************************************************************************************/
+.bpl-freemius-button-wrapper {
+  padding: 12px 30px;
+  border-radius: 6px;
+  background: #146ef5;
+  color: #fff;
+  border: none;
+  font-size: 18px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.4s ease-in-out;
+  display: flex;
+  align-items: center;
+  inline-size: -moz-fit-content;
+  inline-size: fit-content;
+  gap: 4px;
+  z-index: 1;
+  position: relative;
+  overflow: hidden;
+}
+.bpl-freemius-button-wrapper::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 100%;
+  transition: all 0.4s ease-in-out;
+  z-index: -1;
+}
+.bpl-freemius-button-wrapper:hover::before {
+  background: #070127;
+  right: 0;
+}
+/*!**************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[4].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[4].use[2]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[4].use[3]!./admin/Pages/FreeTrialPopup/style.scss ***!
+  \**************************************************************************************************************************************************************************************************************************************************************/
+.freeTrialPopup-wrapper {
+  box-sizing: border-box;
+  background-color: white;
+  border-radius: 0.5rem;
+  width: 70%;
+  margin: 40px auto;
+  border: 1px solid rgba(0, 0, 0, 0.1882352941);
+  padding: 15px;
+  min-height: 600px;
+}
 /*!***********************************************************************************************************************************************************************************************************************************************************!*\
   !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[4].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[4].use[2]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[4].use[3]!./admin/Pages/Video/VideoPlayer.scss ***!
   \***********************************************************************************************************************************************************************************************************************************************************/

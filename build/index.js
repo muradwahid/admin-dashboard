@@ -1504,16 +1504,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @wordpress/block-editor */ "@wordpress/block-editor");
 /* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var immer__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! immer */ "./node_modules/immer/dist/immer.mjs");
-/* harmony import */ var _wordpress_compose__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @wordpress/compose */ "@wordpress/compose");
-/* harmony import */ var _wordpress_compose__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_wordpress_compose__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var _wordpress_data__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @wordpress/data */ "@wordpress/data");
-/* harmony import */ var _wordpress_data__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_wordpress_data__WEBPACK_IMPORTED_MODULE_3__);
-/* harmony import */ var _bpl_tools_hooks__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../../../bpl-tools/hooks */ "../bpl-tools/hooks/index.js");
-/* harmony import */ var _Common_Style__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../Common/Style */ "./src/Components/Common/Style.js");
-/* harmony import */ var _Settings_Settings__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./Settings/Settings */ "./src/Components/Backend/Settings/Settings.js");
-
-
+/* harmony import */ var immer__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! immer */ "./node_modules/immer/dist/immer.mjs");
+/* harmony import */ var _bpl_tools_hooks__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../bpl-tools/hooks */ "../bpl-tools/hooks/index.js");
+/* harmony import */ var _Common_Style__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../Common/Style */ "./src/Components/Common/Style.js");
+/* harmony import */ var _Settings_Settings__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./Settings/Settings */ "./src/Components/Backend/Settings/Settings.js");
 
 
 
@@ -1526,8 +1520,7 @@ const Edit = props => {
   const {
     attributes,
     setAttributes,
-    clientId,
-    getSite
+    clientId
   } = props;
   const {
     items
@@ -1540,11 +1533,10 @@ const Edit = props => {
 
   const {
     data: dbData = null,
-    saveData,
     isLoading,
     refetch,
     error
-  } = (0,_bpl_tools_hooks__WEBPACK_IMPORTED_MODULE_4__.useWPAjax)('bPlSettingsOptions', {
+  } = (0,_bpl_tools_hooks__WEBPACK_IMPORTED_MODULE_2__.useWPAjax)('bPlSettingsOptions', {
     _wpnonce: nonce,
     id: "admin-dashboard"
   });
@@ -1559,9 +1551,6 @@ const Edit = props => {
       setData(dbData || []);
     }
   }, [dbData, isLoading, error]);
-  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(() => {
-    console.log(dbData);
-  }, [dbData]);
 
   // const [nonce, setNonce] = useState('');
   // useEffect(() => {
@@ -1572,7 +1561,7 @@ const Edit = props => {
   // console.log(select('core').getSite()?.prefixUtils);
 
   const updateItem = (type, val, childType = false) => {
-    const newItems = (0,immer__WEBPACK_IMPORTED_MODULE_7__.produce)(items, draft => {
+    const newItems = (0,immer__WEBPACK_IMPORTED_MODULE_5__.produce)(items, draft => {
       if (childType) {
         draft[activeIndex][type][childType] = val;
       } else {
@@ -1584,7 +1573,7 @@ const Edit = props => {
     });
   };
   const isPremium = false;
-  return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_Settings_Settings__WEBPACK_IMPORTED_MODULE_6__["default"], {
+  return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_Settings_Settings__WEBPACK_IMPORTED_MODULE_4__["default"], {
     attributes,
     setAttributes,
     isPremium,
@@ -1593,7 +1582,7 @@ const Edit = props => {
     setActiveIndex
   }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     ...(0,_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.useBlockProps)()
-  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_Common_Style__WEBPACK_IMPORTED_MODULE_5__["default"], {
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_Common_Style__WEBPACK_IMPORTED_MODULE_3__["default"], {
     attributes: attributes,
     id: `block-${clientId}`
   }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", null, "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Beatae quisquam sunt provident perferendis deserunt at molestias incidunt eum voluptas veritatis cumque molestiae saepe nam eligendi temporibus aperiam autem, numquam odit.")));
@@ -1752,26 +1741,6 @@ module.exports = window["wp"]["blockEditor"];
 /***/ ((module) => {
 
 module.exports = window["wp"]["blocks"];
-
-/***/ }),
-
-/***/ "@wordpress/compose":
-/*!*********************************!*\
-  !*** external ["wp","compose"] ***!
-  \*********************************/
-/***/ ((module) => {
-
-module.exports = window["wp"]["compose"];
-
-/***/ }),
-
-/***/ "@wordpress/data":
-/*!******************************!*\
-  !*** external ["wp","data"] ***!
-  \******************************/
-/***/ ((module) => {
-
-module.exports = window["wp"]["data"];
 
 /***/ }),
 

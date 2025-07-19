@@ -10,17 +10,17 @@ const Layout = ({ children }) => {
     { name: 'Settings', href: '/settings' },
     { name: 'Demo', href: '/demo' },
     { name: 'Demo Second', href: '/demo2' },
-    { name: 'Video', href: '/video' }
+    { name: 'Video', href: '/video' },
+    { name: 'Free Trial Form', href: '/free-trial-form' },
+    { name: 'Free Trial Popup', href: '/free-trial-popup' }
   ]
 
-  return (
-    <>
+  return <>
       <div className="bplContainer">
         <Header navigation={navigation} />
         <Content>{children}</Content>
       </div>
     </>
-  )
 }
 
 export default Layout;

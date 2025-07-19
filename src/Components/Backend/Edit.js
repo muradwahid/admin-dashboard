@@ -1,16 +1,13 @@
 import { useBlockProps } from '@wordpress/block-editor';
 import { produce } from 'immer';
 import { useState } from 'react';
-
-import { compose } from '@wordpress/compose';
-import { withSelect } from '@wordpress/data';
 import { useEffect } from 'react';
 import { useWPAjax } from "../../../../bpl-tools/hooks";
 import Style from '../Common/Style';
 import Settings from './Settings/Settings';
 
 const Edit = props => {
-	const { attributes, setAttributes, clientId, getSite } = props;
+	const { attributes, setAttributes, clientId } = props;
 	const { items } = attributes;
 	const [data, setData] = useState({})
 
@@ -19,7 +16,7 @@ const Edit = props => {
 
 	// const { data: utils } = useWPOptionQuery('prefixUtils');
 
-	const { data: dbData = null, saveData, isLoading, refetch, error } = useWPAjax('bPlSettingsOptions', { _wpnonce: nonce, id: "admin-dashboard" });
+	const { data: dbData = null, isLoading, refetch, error } = useWPAjax('bPlSettingsOptions', { _wpnonce: nonce, id: "admin-dashboard" });
 
 	// console.log(nonce);
 
@@ -32,9 +29,6 @@ const Edit = props => {
 		}
 	}, [dbData, isLoading, error]);
 
-	useEffect(() => {
-		console.log(dbData);
-	}, [dbData])
 
 	// const [nonce, setNonce] = useState('');
 	// useEffect(() => {

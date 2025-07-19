@@ -1,0 +1,16 @@
+$prefix: "freeTrialForm";
+
+.#{$prefix}-wrapper {
+  box-sizing: border-box;
+  background-color: white;
+  border-radius: 0.5rem;
+  width: 70%;
+  margin: 40px auto;
+  border: 1px solid rgba(0, 0, 0, 0.1882352941);
+  padding: 15px;
+  min-height: 600px;
+  .#{$prefix}-iframe {
+    width: 100%;
+    min-height: 600px;
+  }
+}

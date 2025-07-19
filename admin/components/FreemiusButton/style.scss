@@ -1,0 +1,35 @@
+.bpl-freemius-button-wrapper {
+  padding: 12px 30px;
+  border-radius: 6px;
+  background: #146ef5;
+  color: #fff;
+  border: none;
+  font-size: 18px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.4s ease-in-out;
+  display: flex;
+  align-items: center;
+  inline-size: -moz-fit-content;
+  inline-size: fit-content;
+  gap: 4px;
+  z-index: 1;
+  position: relative;
+  overflow: hidden;
+  &::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 100%;
+    transition: all 0.4s ease-in-out;
+    z-index: -1;
+  }
+  &:hover {
+    &::before {
+      background: #070127;
+      right: 0;
+    }
+  }
+}
