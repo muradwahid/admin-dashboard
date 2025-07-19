@@ -3,6 +3,8 @@ import { useEffect, useState } from 'react';
 import './bpl-settings.scss';
 import Main from './Components/Main/Main';
 import useWPAjax from './hooks/useWPAjax';
+
+
 const BPLSettings = props => {
 	const { options } = props;
 	const { data: dbData = null, isLoading, refetch, saveData } = useWPAjax('bPlSettingsOptions', { _wpnonce: window.wpApiSettings.nonce, id: options.id, });
