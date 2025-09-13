@@ -3211,6 +3211,107 @@ input::-webkit-inner-spin-button {
 .bPl-inlineMedia-upload-wrapper .bPl-inlineMedia-upload-preview svg.bPl-media-preview-deleteBtn:hover {
   opacity: 1;
 }
+/*!*********************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[4].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[4].use[2]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[4].use[3]!./settings/Components/Main/ProModal/style.scss ***!
+  \*********************************************************************************************************************************************************************************************************************************************************************/
+/* Hide checkbox */
+#bPl-settings-pro-modal-toggle {
+  display: none;
+}
+
+/* Button to open modal */
+.bPl-settings-pro-open-modal-btn {
+  display: inline-block;
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: white;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+/* Modal styles */
+.bPl-settings-pro-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 999;
+}
+.bPl-settings-pro-modal .bPl-settings-pro-modal-content > a {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+.bPl-settings-pro-modal .bPl-settings-pro-modal-content > p {
+  font-size: 16px;
+  font-weight: 600;
+}
+.bPl-settings-pro-modal .bPl-settings-pro-modal-upgrade-btn {
+  padding: 8px 14px;
+  border-radius: 6px;
+  background: #146ef5;
+  color: #fff;
+  border: none;
+  font-size: 18px;
+  cursor: pointer;
+  transition: all 0.4s ease-in-out;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  z-index: 1;
+  position: relative;
+  overflow: hidden;
+}
+.bPl-settings-pro-modal .bPl-settings-pro-modal-upgrade-btn::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 100%;
+  transition: all 0.4s ease-in-out;
+  z-index: -1;
+}
+.bPl-settings-pro-modal .bPl-settings-pro-modal-upgrade-btn:hover::before {
+  background: #070127;
+  right: 0;
+}
+.bPl-settings-pro-modal .bPl-settings-pro-modal-upgrade-btn svg {
+  font-size: 22px;
+}
+
+/* Show modal when checkbox is checked */
+#bPl-settings-pro-modal-toggle:checked ~ .bPl-settings-pro-modal {
+  display: flex;
+}
+
+.bPl-settings-pro-modal-content {
+  background: white;
+  padding: 30px;
+  border-radius: 8px;
+  max-width: 500px;
+  width: 90%;
+  position: relative;
+  text-align: center;
+}
+
+.bPl-settings-pro-close-btn {
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  font-size: 22px;
+  color: #333;
+  cursor: pointer;
+}
+
+.bPl-settings-pro-close-btn:hover {
+  color: red;
+}
 /*!*******************************************************************************************************************************************************************************************************************************************************************!*\
   !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[4].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[4].use[2]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[4].use[3]!./settings/Components/Main/Footer/style.scss ***!
   \*******************************************************************************************************************************************************************************************************************************************************************/
@@ -3297,11 +3398,20 @@ input::-webkit-inner-spin-button {
 .bPlSettings .bPlSettingsSection .bPlSettingsBody {
   background: #fff;
 }
+.bPlSettings .bPlSettingsSection .bPlSettingsBody .bPl-settings-hints {
+  padding: 0 20px 20px 30px;
+  margin-top: -10px !important;
+  font-size: 13px;
+  text-wrap: auto;
+}
 .bPlSettings .bPlSettingsSection .bPlSettingsBody .field {
   position: relative;
   display: flex;
   align-items: flex-start;
   border-top: 1px solid #ccc;
+}
+.bPlSettings .bPlSettingsSection .bPlSettingsBody .field.pointerEventNone {
+  pointer-events: none;
 }
 .bPlSettings .bPlSettingsSection .bPlSettingsBody .field .fieldLabel {
   width: 20%;
@@ -3309,6 +3419,22 @@ input::-webkit-inner-spin-button {
 .bPlSettings .bPlSettingsSection .bPlSettingsBody .field .fieldLabel .label {
   font-size: 14px;
   font-weight: 500;
+}
+.bPlSettings .bPlSettingsSection .bPlSettingsBody .field .fieldLabel .label .bPl-Settings-pro-badge {
+  background-color: #ff6b6b;
+  color: white;
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  margin-left: 8px;
+  display: inline-block;
+  vertical-align: middle;
+  line-height: 1.2;
+}
+.bPlSettings .bPlSettingsSection .bPlSettingsBody .field .fieldLabel .label .bPl-Settings-pro-badge:hover {
+  background-color: #ff5252;
 }
 .bPlSettings .bPlSettingsSection .bPlSettingsBody .field .fieldLabel p.subTitle {
   font-size: 13px;
@@ -5736,6 +5862,8 @@ input::-webkit-inner-spin-button {
 .bPluginsDemos {
   max-width: 100%;
   min-height: 600px;
+  width: 70%;
+  margin: 40px auto;
   height: calc(100dvh - 50px - var(--dynamic-get-demos-height, 134px));
   background: #fff;
   display: flex;
@@ -5743,7 +5871,6 @@ input::-webkit-inner-spin-button {
   border-radius: 1rem;
   overflow: hidden;
   box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1019607843), 0 8px 10px -6px rgba(0, 0, 0, 0.1019607843);
-  margin: 0;
 }
 .bPluginsDemos .wp-block-buttons {
   gap: 0.625rem;
@@ -6122,11 +6249,11 @@ input::-webkit-inner-spin-button {
   margin: 40px auto;
   border: 1px solid rgba(0, 0, 0, 0.1882352941);
   padding: 15px;
-  min-height: 600px;
+  min-height: 640px;
 }
 .freeTrialForm-wrapper .freeTrialForm-iframe {
   width: 100%;
-  min-height: 600px;
+  min-height: 640px;
 }
 /*!*******************************************************************************************************************************************************************************************************************************************************************!*\
   !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[4].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[4].use[2]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[4].use[3]!./admin/components/FreemiusButton/style.scss ***!

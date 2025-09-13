@@ -5,6 +5,7 @@ import { externalIcon } from '../../utils/icons';
 import "./style.scss";
 import { content, demos } from './data';
 import ExternalButtons from './ExternalButtons';
+import Layout from '../../Layout/Layout';
 const DemoTwo = () => {
 
   const { title, description } = content || {};
@@ -22,82 +23,84 @@ const DemoTwo = () => {
 
   const prefix ="bPluginsDemos"
 
-  return <div className={prefix}>
-    {/* Left Sidebar - Demo Tabs */}
-    <div className='sidebar'>
-      <div className='sidebarHeader'>
-        <div>
-          {title && <h2 className='wp-block-heading' dangerouslySetInnerHTML={{ __html: title }} />}
-          {description && <p dangerouslySetInnerHTML={{ __html: description }} />}
-        </div>
-
-        <ExternalButtons content={content} activeDemo={activeDemo} style='white' />
-      </div>
-
-      <div className='sidebarList'>
-        {demos.map((demo, index) => {
-          const { icon, title, description, category } = demo;
-
-          const isActive = activeIndex === index;
-
-          return <button key={index} className={isActive ? 'active' : ''} onClick={() => handleDemoChange(index)}>
-            {icon && <div className='iconBox' dangerouslySetInnerHTML={{ __html: icon }} />}
-
-            <div className='texts'>
-              {title && <h4>{title}</h4>}
-
-              {description && <p>{description}</p>}
-
-              {category && <span className='category'>{category}</span>}
-            </div>
-
-            {isActive && <div className='externalIcon'>{externalIcon}</div>}
-          </button>
-        })}
-      </div>
-    </div>
-
-    {/* Right Content - Demo Preview */}
-    <div className='main'>
-      {/* Demo Header */}
-      <div className='mainHeader'>
-        <div className='headerInfo'>
-          <h3>{activeDemo.title}</h3>
-          <p>{activeDemo.description}</p>
-        </div>
-
-        <ExternalButtons content={content} activeDemo={activeDemo} />
-      </div>
-
-      {/* Demo Preview */}
-      <div className='canvas'>
-        {isLoading && <div className='loading'>
-          <div className='loadingContent'>
-            <div className='spinner'></div>
-            <p className='loadingText'>Loading demo...</p>
+  return <Layout>
+    <div className={prefix}>
+      {/* Left Sidebar - Demo Tabs */}
+      <div className='sidebar'>
+        <div className='sidebarHeader'>
+          <div>
+            {title && <h2 className='wp-block-heading' dangerouslySetInnerHTML={{ __html: title }} />}
+            {description && <p dangerouslySetInnerHTML={{ __html: description }} />}
           </div>
-        </div>}
 
-        <div className='demo-image-preview-container'>
-          <img className='demo-image-preview' src={activeDemo.url} alt={activeDemo.title} onLoad={() => setIsLoading(false)} />
+          <ExternalButtons content={content} activeDemo={activeDemo} style='white' />
         </div>
-        {/* <iframe
+
+        <div className='sidebarList'>
+          {demos.map((demo, index) => {
+            const { icon, title, description, category } = demo;
+
+            const isActive = activeIndex === index;
+
+            return <button key={index} className={isActive ? 'active' : ''} onClick={() => handleDemoChange(index)}>
+              {icon && <div className='iconBox' dangerouslySetInnerHTML={{ __html: icon }} />}
+
+              <div className='texts'>
+                {title && <h4>{title}</h4>}
+
+                {description && <p>{description}</p>}
+
+                {category && <span className='category'>{category}</span>}
+              </div>
+
+              {isActive && <div className='externalIcon'>{externalIcon}</div>}
+            </button>
+          })}
+        </div>
+      </div>
+
+      {/* Right Content - Demo Preview */}
+      <div className='main'>
+        {/* Demo Header */}
+        <div className='mainHeader'>
+          <div className='headerInfo'>
+            <h3>{activeDemo.title}</h3>
+            <p>{activeDemo.description}</p>
+          </div>
+
+          <ExternalButtons content={content} activeDemo={activeDemo} />
+        </div>
+
+        {/* Demo Preview */}
+        <div className='canvas'>
+          {isLoading && <div className='loading'>
+            <div className='loadingContent'>
+              <div className='spinner'></div>
+              <p className='loadingText'>Loading demo...</p>
+            </div>
+          </div>}
+
+          <div className='demo-image-preview-container'>
+            <img className='demo-image-preview' src={activeDemo.url} alt={activeDemo.title} onLoad={() => setIsLoading(false)} />
+          </div>
+          {/* <iframe
           src={activeDemo.url}
           title={`${activeDemo.title} Demo`}
           onLoad={() => setIsLoading(false)}
           sandbox='allow-scripts allow-same-origin allow-popups allow-forms'
         /> */}
-      </div>
+        </div>
 
-      {/* Demo Footer */}
-      <div className='mainFooter'>
-        <span>Preview of <strong>{activeDemo.title}</strong></span>
-        {/* <span className='status'>
+        {/* Demo Footer */}
+        <div className='mainFooter'>
+          <span>Preview of <strong>{activeDemo.title}</strong></span>
+          {/* <span className='status'>
           <div className='statusDot'></div>
           Live Demo
         </span> */}
+        </div>
       </div>
     </div>
-  </div>
+  </Layout>
 }
 export default DemoTwo;

@@ -7,6 +7,14 @@
 
     .bPlSettingsBody {
       background: #fff;
+
+      .bPl-settings-hints {
+        padding: 0 20px 20px 30px;
+        margin-top: -10px !important;
+        font-size: 13px;
+        text-wrap: auto;
+      }
+
       .field {
         position: relative;
         display: flex;
@@ -14,12 +22,36 @@
         align-items: flex-start;
         border-top: 1px solid #ccc;
 
+        &.pointerEventNone {
+          pointer-events: none;
+        }
+
         .fieldLabel {
           width: 20%;
+
           .label {
             font-size: 14px;
             font-weight: 500;
+
+            .bPl-Settings-pro-badge {
+              background-color: #ff6b6b;
+              color: white;
+              padding: 2px 6px;
+              border-radius: 4px;
+              font-size: 10px;
+              font-weight: 700;
+              text-transform: uppercase;
+              margin-left: 8px;
+              display: inline-block;
+              vertical-align: middle;
+              line-height: 1.2;
+
+              &:hover {
+                background-color: #ff5252;
+              }
+            }
           }
+
           p.subTitle {
             font-size: 13px;
             color: #999;
@@ -31,18 +63,22 @@
 
         .fieldComponent {
           width: 80%;
+
           .beforeAfterText {
             font-size: 13px;
             font-weight: normal;
             margin: 8px 0;
           }
+
           .beforeAfterText:first-child {
             margin-top: 0;
           }
         }
+
         .pr15 {
           padding-right: 15px;
         }
+
         .fieldComponent.fullWidth {
           width: 100% !important;
         }
@@ -55,6 +91,7 @@
           display: flex;
           align-items: center;
           gap: 6px;
+
           .bPl-field-help-text {
             padding: 3px 8px;
             font-size: 12px;
@@ -66,10 +103,12 @@
             white-space: nowrap;
             display: none;
           }
+
           .bPl-field-help-icon {
             color: #aaa;
             font-size: 16px;
           }
+
           &:hover {
             .bPl-field-help-text {
               display: block;
@@ -77,6 +116,7 @@
           }
         }
       }
+
       .fieldPadding {
         padding: 25px 20px 25px 30px;
       }
@@ -87,13 +127,14 @@
 .bPlSettingsBody.bPlBodyWidth {
   width: calc(100% - 255px);
 }
+
 .bPlSettingsBody.bPlWidthFull {
   width: 100%;
 }
 
 @media screen and (max-width: 767px) {
-  .bPlSettings{
-    .bPlSettingsSection{
+  .bPlSettings {
+    .bPlSettingsSection {
       .bPlSettingsBody {
         width: 100%;
       }

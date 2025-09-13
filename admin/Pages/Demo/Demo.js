@@ -4,6 +4,7 @@ import { data } from "./data";
 import ImageModal from './ImageModal';
 import "./style.scss";
 import { AiOutlineShoppingCart } from '../../utils/icons';
+import Layout from '../../Layout/Layout';
 const adds = "admin-dashboard";
 const options = [
     { label: "All", value: "all" },
@@ -41,24 +42,26 @@ const Demo = ({ upgradeLink }) => {
         ...(isSet(height) && { "--bpl-admin-demo-item-height": height }),
     };
     return (
-        <div className={`${adds}-demo-wrapper`}>
-            {isOpen ? <ImageModal upgradeLink={upgradeLink} image={sectionsData[activeIdx]?.img} handleModalClose={handleModalClose} data={sectionsData} activeIdx={activeIdx} /> : null}
-            <div className={`${adds}-navigation-wrapper`}>
-                <BButtonGroup style={{marginBottom:"0"}} label='' fontSize='16px' options={options} activeBg='#146EF5' wrap={true} value={section} onChange={value => setSection(value)} />
-                <a src={upgradeLink} className={`${adds}-upgrade-btn-wrapper`}><button className={`${adds}-upgrade-btn`} ><AiOutlineShoppingCart/>Upgrade Now</button></a>
+        <Layout>
+            <div className={`${adds}-demo-wrapper`}>
+                {isOpen ? <ImageModal upgradeLink={upgradeLink} image={sectionsData[activeIdx]?.img} handleModalClose={handleModalClose} data={sectionsData} activeIdx={activeIdx} /> : null}
+                <div className={`${adds}-navigation-wrapper`}>
+                    <BButtonGroup style={{ marginBottom: "0" }} label='' fontSize='16px' options={options} activeBg='#146EF5' wrap={true} value={section} onChange={value => setSection(value)} />
+                    <a src={upgradeLink} className={`${adds}-upgrade-btn-wrapper`}><button className={`${adds}-upgrade-btn`} ><AiOutlineShoppingCart />Upgrade Now</button></a>
+                </div>
+                <div className={`${adds}-demo-items-container`} style={dynamicStyle}>
+                    {sectionsData.map((item, i) => (
+                        <div className={`${adds}-demo-item`} key={i}>
+                            <img className={`${adds}-demo-item-img`} src={item.img} alt={item.title} onClick={() => {
+                                setActiveIdx(i)
+                                setIsOpen(true)
+                            }} />
+                            <p>{item.title}</p>
+                        </div>
+                    ))}
+                </div>
             </div>
-            <div className={`${adds}-demo-items-container`} style={dynamicStyle}>
-                {sectionsData.map((item, i) => (
-                    <div className={`${adds}-demo-item`} key={i}>
-                        <img className={`${adds}-demo-item-img`} src={item.img} alt={item.title} onClick={() => {
-                            setActiveIdx(i)
-                            setIsOpen(true)
-                        }} />
-                        <p>{item.title}</p>
-                    </div>
-                ))}
-            </div>
-        </div>
+       </Layout>
     );
 };
 

@@ -6,6 +6,7 @@ import Footer from './Footer/Footer';
 import './Main.scss';
 import Navbar from './Navbar/Navbar';
 import Sidebar from './SideBar/SideBar';
+import { extractDefaultsNested } from '../../utils/functions';
 
 /**
  * Main component for the settings panel
@@ -23,25 +24,26 @@ import Sidebar from './SideBar/SideBar';
  * @param {Function} setIsSaved - Function to update isSaved state
  * @param {Function} handleResetData - Function to reset all data
  */
-const Main = ({ options, data, dbData, setData, onSaveData, isLoading, saveData, refetch, isEqual, setIsEqual, isSaved, setIsSaved, handleResetData }) => {
+const Main = ({ options, data, dbData, setData, onSaveData, isLoading, saveData, refetch, isEqual, setIsEqual, isSaved, setIsSaved, handleResetData, isPremium }) => {
   // saveType = nested | serialized
   const { sections, saveType = 'serialized' } = options;
 
   const [isHidden, setIsHidden] = useState(false);
   const [search, setSearch] = useState("");
 
-  // const parent = localStorage.getItem('activeSection')
-  // const child = localStorage.getItem('activeChild')
+  const parent = localStorage.getItem('activeSection')
+  const child = localStorage.getItem('activeChild')
 
-  // const [activeSection, setActiveSection] = useState(parent || sections[0].name);
-  // const [activeChild, setActiveChild] = useState(child || (sections[0].children ? sections[0].children[0].name : ''));
-  const [activeSection, setActiveSection] = useState( sections[0].name);
-  const [activeChild, setActiveChild] = useState(sections[0].children ? sections[0].children[0].name : '');
+  const [activeSection, setActiveSection] = useState(parent || sections[0].name);
+  const [activeChild, setActiveChild] = useState(child || (sections[0].children ? sections[0].children[0].name : ''));
+
   useEffect(() => {
     localStorage.setItem('activeSection', activeSection)
     localStorage.setItem('activeChild', activeChild)
   }, [activeChild, activeSection])
+
   const activeProps = { activeSection, setActiveSection, activeChild, setActiveChild };
+
   const updateData = (id, val) => {
     if (!isLoading) {
       if (saveType === 'serialized') {
@@ -75,9 +77,10 @@ const Main = ({ options, data, dbData, setData, onSaveData, isLoading, saveData,
   }
 
 
-  // useEffect(() => {
-  //   window.scrollTo(0, 0)
-  // }, [])
+  useEffect(() => {
+    window.scrollTo(0, 0)
+  }, [parent, child])
+
   const searchFieldUpdateData = (id, val, parent, child) => {
     if (child) {
       setData((prev) => ({
@@ -101,7 +104,6 @@ const Main = ({ options, data, dbData, setData, onSaveData, isLoading, saveData,
     }
   }
 
-
   useEffect(() => {
     if (search.length > 3) {
       setIsHidden(true);
@@ -111,20 +113,18 @@ const Main = ({ options, data, dbData, setData, onSaveData, isLoading, saveData,
   }, [search])
 
   const handleResetSection = () => {
-
-    if (saveType =='nested') {
-      if (activeSection && (activeChild && activeChild!== 'null')) {
-        const newData = {...data };
+    if (saveType == 'nested') {
+      if (activeSection && (activeChild && activeChild !== 'null')) {
+        const newData = { ...data };
         Object.keys(newData?.[activeSection]?.[activeChild]).forEach((key) => {
           newData[activeSection][activeChild][key] = '';
 
         })
         saveData({ [options.id]: JSON.stringify(newData) })
 
-
         location.reload()
       } else if (!activeChild || activeChild === 'null') {
-        const newData = {...data };
+        const newData = { ...data };
         Object.keys(newData?.[activeSection]).forEach((key) => {
           newData[activeSection][key] = '';
 
@@ -133,29 +133,47 @@ const Main = ({ options, data, dbData, setData, onSaveData, isLoading, saveData,
         refetch()
       }
     } else {
-      const db = { ...dbData };
-      Object.keys(db).forEach((key) => db[key] = '');
-      saveData({ [options.id]: JSON.stringify(db) })
+      // const db = { ...dbData };
+      // Object.keys(db).forEach((key) => db[key] = '');
+      // saveData({ [options.id]: JSON.stringify(db) })
+      // const db = {};
+      // Object.keys(db).forEach((key) => db[key] = '');
+      const sections = options.sections;
+      let db = {};
+      for (const section of sections) {
+        const fields = section?.fields;
+        if (section.name === activeSection && fields) {
+          db = extractDefaultsNested(fields);
+
+        }
+      }
+      saveData({ [options.id]: JSON.stringify({ ...dbData, ...db }) })
+      setData(prev => {
+        return {
+          ...prev,
+          ...db
+        }
+      });
       refetch()
-      
     }
   }
+
 
   return (
     <div className='bPlSettings'>
       <Navbar {...{ search, setSearch, saveData, isLoading, isHidden, setIsHidden, options, onSaveData, setData, data, activeSection, activeChild, isEqual, setIsEqual, isSaved, setIsSaved, handleResetData, handleResetSection }} />
       <div className='bPlSettingsSection'>
-        {(search.length < 4 && sections?.length>1) && <Sidebar sections={sections} {...activeProps} isHidden={isHidden} refetch={refetch} />}
-        <div className={`bPlSettingsBody ${options?.sections.length > 1 ? "" :"bPlWidthFull"}  ${isHidden ? "bPlWidthFull" : "bPlBodyWidth"}`} >
+        {(search.length < 4 && sections?.length > 1) && <Sidebar sections={sections} {...activeProps} isHidden={isHidden} refetch={refetch} />}
+        <div className={`bPlSettingsBody ${options?.sections.length > 1 ? "" : "bPlWidthFull"}  ${isHidden ? "bPlWidthFull" : "bPlBodyWidth"}`} >
           {
             search.length > 3 ?
-              <SearchBodyFields {...{ search, setSearch, options, sections, data, setData, isLoading, activeSection, activeChild }} updateData={searchFieldUpdateData} />
+              <SearchBodyFields {...{ search, setSearch, options, sections, data, setData, isLoading, activeSection, activeChild, isPremium }} updateData={searchFieldUpdateData} />
               :
-              <Body dbData={dbData} search={search} setSearch={setSearch} options={options} {...activeProps} updateData={updateData} sections={sections} data={data} setData={setData} isLoading={isLoading} refetch={refetch} />
+              <Body dbData={dbData} search={search} setSearch={setSearch} options={options} {...activeProps} updateData={updateData} sections={sections} data={data} setData={setData} isLoading={isLoading} refetch={refetch} isPremium={isPremium} />
           }
         </div>
       </div>
-      <Footer setIsSaved={setIsSaved} saveData={saveData} isLoading={isLoading} onSaveData={onSaveData} handleResetData={handleResetData} handleResetSection={handleResetSection} />
+      <Footer setIsSaved={setIsSaved} saveData={saveData} isLoading={isLoading} onSaveData={onSaveData} handleResetData={handleResetData} handleResetSection={handleResetSection} options={options} />
     </div>
   );
 };

@@ -29,9 +29,13 @@ const App = ({ options }) => {
         <Route path="/blocks" element={<Blocks />} />
         <Route path="/inDev" element={<InDev />} />
         <Route path="/settings" element={<Layout><div style={{ width: "70%", margin: "0 auto" }}><BPLSettings options={options} /></div></Layout>} />
-        <Route path="/demo" element={<Layout><Demo /></Layout>} />
-        <Route path="/demo2" element={<Layout><div style={{ width: "70%", margin: "0 auto" }}><DemoTwo /></div></Layout>} />
+        <Route path="/demo" element={<Demo />} />
+        <Route path="/demo2" element={<DemoTwo />} />
         <Route path="/video" element={<Video />} />
+
+        {/* add more params here */}
+        {/* https://freemius.com/help/documentation/selling-with-freemius/freemius-checkout-buy-button/ */}
+
         <Route path="/free-trial-form" element={<FreeTrialForm freemius={freemius} />} />
         <Route path="/free-trial-popup" element={<FreeTrialPopup freemius={freemius} />} />
 

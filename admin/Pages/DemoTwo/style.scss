@@ -1,6 +1,8 @@
 .bPluginsDemos {
   max-width: 100%;
   min-height: 600px;
+  width: 70%;
+  margin: 40px auto;
   height: calc(100dvh - 50px - var(--dynamic-get-demos-height, 134px));
   background: #fff;
   display: flex;
@@ -10,7 +12,6 @@
   box-shadow:
     0 20px 25px -5px #0000001a,
     0 8px 10px -6px #0000001a;
-  margin: 0;
 
   .wp-block-buttons {
     gap: 0.625rem;

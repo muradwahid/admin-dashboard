@@ -18,7 +18,8 @@ export const options = {
                     id: "opt-textarea",
                     field: "textarea",
                     title: "Textarea",
-                    help: "The help text of the field"
+                    help: "The help text of the field",
+                    isPremium: true
                 },
                 {
                     id: "opt-select-1",
